@@ -14,4 +14,4 @@
 |---|---|---|
 | `lambrin-v2/propuesta.md` | F0–F3 (admisión, requisitos, arquitectura y plan) | PG0–PG3 aprobados 2026-10-28 |
 | `_sistema/adr/ADR-0005` … `ADR-0008` | F2 | Aceptados |
-| `lambrin-v2/verificacion.md` | F4 | Pendiente |
+| `lambrin-v2/verificacion.md` | F4 | T07 ejecutada 2026-10-29; pendiente PG4 |

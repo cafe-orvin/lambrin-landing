@@ -300,6 +300,16 @@
   var counts = { todos: L.productos.length, interior: 0, exterior: 0 };
   L.productos.forEach(function (p) { counts[p.linea]++; });
   $$("[data-filter-count]").forEach(function (s) { s.textContent = counts[s.dataset.filterCount]; });
+  // Filas completas en la rejilla de 12 columnas: [6,6] y [4,4,4] alternadas
+  function layoutCards() {
+    var vis = cards.filter(function (c) { return !c.classList.contains("is-hidden"); }), i = 0, row = 0;
+    while (i < vis.length) {
+      var r = vis.length - i, n = r === 1 ? 1 : (r === 2 || r === 4) ? 2 : r === 3 ? 3 : (row % 2 ? 3 : 2);
+      for (var k = 0; k < n; k++) vis[i + k].dataset.span = n === 1 ? "12" : n === 2 ? "6" : "4";
+      i += n; row++;
+    }
+  }
+  layoutCards();
   var ink = $(".filters__ink");
   function moveInk(b) { ink.style.width = b.offsetWidth + "px"; ink.style.transform = "translateX(" + b.offsetLeft + "px)"; }
   $$("[data-filter]").forEach(function (b) {
@@ -315,6 +325,7 @@
           (function (el, d) { setTimeout(function () { el.classList.remove("enter"); }, 40 + d * 60); })(c, k++);
         }
       });
+      layoutCards();
     });
   });
   window.addEventListener("load", function () { moveInk($('[data-filter][aria-selected="true"]')); });
@@ -452,7 +463,7 @@
       var runs = Math.ceil(h * 100 / m.largo);
       n = Math.ceil(perRow * runs * (1 + merma));
       area = a * h;
-      extra = perRow + " vigas a lo ancho" + (runs > 1 ? " × " + runs + " tramos" : "") + " con " + num(gap, 1) + " cm de separación";
+      extra = perRow + " vigas a lo ancho" + (runs > 1 ? " × " + runs + " tramos" : "") + " con " + num(gap, 1) + " cm de separación + " + Math.round(merma * 100) + " % de merma";
     } else {
       area = Math.max(0, a * h - (p.calc === "superficie" ? Math.max(0, +form.huecos.value || 0) : 0));
       if (!area) { out.innerHTML = '<p class="calc__warn">El área a cubrir queda en cero. Revisa lo que descuentas.</p>'; lastCalc = null; return; }
@@ -466,7 +477,7 @@
     lastCalc = { p: p, c: c, best: best };
     out.innerHTML =
       '<div class="calc__nums"><div><span>Área</span><b>' + num(area, 2) + ' m²</b></div><div><span>Piezas necesarias</span><b>' + n + '</b></div><div><span>Costo por m²</span><b>' + money(Math.round(best.total / area)) + "</b></div></div>" +
-      '<p style="color:var(--muted-light);font-size:.9rem">' + esc(extra) + ". Te conviene comprar " + esc(parts.join(" + ")) + " (" + best.piezas + " pz).</p>" +
+      '<p style="color:var(--muted-light);font-size:.9rem">' + esc(extra) + (p.precio.caja ? ". Te conviene comprar " + esc(parts.join(" + ")) + " (" + best.piezas + " pz)." : ". Necesitas " + best.piezas + " piezas.") + "</p>" +
       '<div class="calc__best"><p>Total estimado · ' + esc(fullName(p)) + " " + esc(c.nombre) + "<strong>" + money(best.total) + '</strong></p><button type="button" class="btn btn--light" data-calc-add>' + (c.agotado ? "Consultar disponibilidad" : "Agregar a cotización") + "</button></div>" +
       (c.agotado ? '<p class="calc__warn">Este color aparece agotado en el catálogo. Pregunta por disponibilidad antes de comprar.</p>' : "");
   }
@@ -500,10 +511,10 @@
     return '<button type="button" class="shot" data-id="' + g.producto + '"><figure><img src="' + scene(g.escena, 800) + '" srcset="' + srcset(g.escena) + '" sizes="(max-width: 900px) 74vw, 30vw" alt="' + esc(g.titulo) + '" loading="lazy"><figcaption>' + esc(g.titulo) + "<small>" + esc(fullName(p)) + " ↗</small></figcaption></figure></button>";
   }).join("");
   $$(".shot", track).forEach(function (s) { s.addEventListener("click", function () { openSheet(s.dataset.id); }); });
-  var gallery = $("#inspiracion"), gPin = $("[data-gallery]");
+  var gallery = $("#inspiracion"), gPin = $("[data-gallery]"), gHead = $(".gallery__head");
   var wide = window.matchMedia("(min-width: 901px)");
   function sizeGallery() {
-    if (!wide.matches) { gallery.style.removeProperty("--gh"); track.style.transform = ""; return; }
+    if (!wide.matches) { gallery.style.removeProperty("--gh"); track.style.transform = ""; gHead.style.transform = ""; return; }
     var dist = track.scrollWidth - (gPin.clientWidth - track.offsetLeft);
     gallery.style.setProperty("--gh", (window.innerHeight + Math.max(0, dist)) + "px");
     gallery.dataset.dist = Math.max(0, dist);
@@ -638,7 +649,7 @@
     if (wide.matches) {
       var gr = gallery.getBoundingClientRect(), dist = +gallery.dataset.dist || 0;
       var k = Math.min(1, Math.max(0, -gr.top / Math.max(1, gr.height - vh)));
-      track.style.transform = "translate3d(" + (-dist * k) + "px,0,0)";
+      track.style.transform = gHead.style.transform = "translate3d(" + (-dist * k) + "px,0,0)";
     }
     if (scrubWords.length) {
       var sr = scrub.getBoundingClientRect();
