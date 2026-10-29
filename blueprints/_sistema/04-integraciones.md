@@ -1,5 +1,5 @@
 # 04 — Integraciones (v2)
-Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29
 
 | Integración | Estado | Detalle |
 |---|---|---|

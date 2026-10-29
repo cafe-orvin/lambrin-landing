@@ -1,5 +1,5 @@
 # 00 — Contexto: Landing Lambrin (v2)
-Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5 · Fuente: `../lambrin-v2/propuesta.md`
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29 · Fuente: `../lambrin-v2/propuesta.md`
 
 ## Propósito
 Landing estática que vende el catálogo completo de Lambrin (13 productos, 44 colores y 5 accesorios) con escenas fotográficas, movimiento e interacción, y que lleva al visitante a cotizar por WhatsApp. La v1 conceptual se conserva en la etiqueta `lambrin-v1`.

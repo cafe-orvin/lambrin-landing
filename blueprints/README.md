@@ -15,4 +15,4 @@
 | `lambrin-v2/propuesta.md` | F0–F3 (admisión, requisitos, arquitectura y plan) | PG0–PG3 aprobados 2026-10-28 |
 | `_sistema/adr/ADR-0005` … `ADR-0008` | F2 | Aceptados |
 | `lambrin-v2/verificacion.md` | F4 | PG4 aprobado 2026-10-29 |
-| `_sistema/00` … `06` | F5 | Reescritos para la v2; pendiente PG5 |
+| `_sistema/00` … `06` | F5 | PG5 aprobado 2026-10-29; fusionado a `main` (etiqueta `lambrin-v2`) |

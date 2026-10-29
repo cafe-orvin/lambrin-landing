@@ -1,5 +1,5 @@
 # 03 — Modelo de datos (v2)
-Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29
 
 Sin base de datos ni datos personales. La configuración vive en `site/js/catalogo.js` (ADR-0006); la lista de cotización se guarda solo en el `localStorage` del visitante con la clave `lambrin-cotizacion`.
 
