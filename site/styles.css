@@ -227,16 +227,16 @@ p { margin: 0; }
 
 .light--sun {
   background: linear-gradient(90deg,
-    rgba(255, 238, 208, .95) 0 29%,
+    rgba(255, 242, 222, .9) 0 29%,
     transparent 29% 33%,
-    rgba(255, 238, 208, .95) 33% 63%,
+    rgba(255, 242, 222, .9) 33% 63%,
     transparent 63% 67%,
-    rgba(255, 238, 208, .95) 67% 100%);
-  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .95) 0 24%, transparent 24% 28%, rgba(0, 0, 0, .88) 28%, rgba(0, 0, 0, .3) 100%);
-          mask-image: linear-gradient(180deg, rgba(0, 0, 0, .95) 0 24%, transparent 24% 28%, rgba(0, 0, 0, .88) 28%, rgba(0, 0, 0, .3) 100%);
-  filter: blur(5px);
+    rgba(255, 242, 222, .9) 67% 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .9) 0 24%, transparent 24% 28%, rgba(0, 0, 0, .8) 28%, rgba(0, 0, 0, .15) 100%);
+          mask-image: linear-gradient(180deg, rgba(0, 0, 0, .9) 0 24%, transparent 24% 28%, rgba(0, 0, 0, .8) 28%, rgba(0, 0, 0, .15) 100%);
+  filter: blur(7px);
   mix-blend-mode: overlay;
-  opacity: calc(var(--day) * var(--sun));
+  opacity: calc(var(--day) * var(--sun) * .75);
 }
 
 .light--sun-glow {
@@ -254,17 +254,18 @@ p { margin: 0; }
 
 .light--lamp {
   background:
-    radial-gradient(ellipse 7.5% 52% at var(--lamp-x) var(--lamp-y), rgba(255, 204, 142, .95) 0%, rgba(255, 176, 106, .38) 38%, transparent 70%),
-    radial-gradient(ellipse 24% 44% at var(--lamp-x) var(--lamp-y), rgba(255, 180, 112, .24), transparent 70%);
+    radial-gradient(ellipse 9% 58% at var(--lamp-x) var(--lamp-y), rgba(255, 208, 150, 1) 0%, rgba(255, 178, 108, .55) 34%, transparent 72%),
+    radial-gradient(ellipse 26% 50% at var(--lamp-x) var(--lamp-y), rgba(255, 180, 112, .34), transparent 70%);
   mix-blend-mode: screen;
   opacity: calc((1 - var(--day)) * var(--lamp));
 }
 
 .light--accent {
   background:
-    radial-gradient(ellipse 12% 72% at 14% -4%, rgba(255, 232, 198, .85), rgba(255, 218, 176, .22) 45%, transparent 72%),
-    radial-gradient(ellipse 12% 72% at 36% -4%, rgba(255, 232, 198, .85), rgba(255, 218, 176, .22) 45%, transparent 72%),
-    radial-gradient(ellipse 12% 72% at 58% -4%, rgba(255, 232, 198, .85), rgba(255, 218, 176, .22) 45%, transparent 72%);
+    radial-gradient(ellipse 13% 80% at 14% -4%, rgba(255, 236, 206, 1), rgba(255, 222, 184, .4) 40%, transparent 75%),
+    radial-gradient(ellipse 13% 80% at 36% -4%, rgba(255, 236, 206, 1), rgba(255, 222, 184, .4) 40%, transparent 75%),
+    radial-gradient(ellipse 13% 80% at 58% -4%, rgba(255, 236, 206, 1), rgba(255, 222, 184, .4) 40%, transparent 75%),
+    linear-gradient(180deg, rgba(255, 226, 190, .22), transparent 55%);
   mix-blend-mode: screen;
   opacity: calc(var(--accent) * var(--accent-k));
 }
@@ -913,27 +914,31 @@ p { margin: 0; }
 
 @media (max-width: 719px) {
   .scene {
-    --lamp-x: 70%;
-    --lamp-y: 18%;
+    --lamp-x: 47%;
+    --lamp-y: 20%;
     --floor-h: 11%;
-    height: max(100svh, 700px);
+    height: max(100svh, 720px);
     max-height: none;
   }
 
+  /* Posición fija bajo el encabezado para no encimarse con el texto */
   .plate {
-    top: 26%;
+    top: 150px;
     right: 6%;
   }
 
   .brand { letter-spacing: .3em; }
   .site-nav a { font-size: .68rem; letter-spacing: .1em; }
+
+  .chip { gap: 8px; padding-right: 8px; font-size: .88rem; }
+  .chip__swatch { width: 24px; height: 24px; }
 }
 
 @media (max-width: 359px) {
   .site-nav { gap: 10px; }
   .site-nav a { letter-spacing: .04em; }
-  .chip { padding-right: 8px; font-size: .84rem; }
-  .chip__swatch { width: 24px; height: 24px; }
+  .chip { gap: 6px; padding-left: 5px; font-size: .8rem; }
+  .chip__swatch { width: 20px; height: 20px; }
 }
 
 @media (min-width: 720px) {
@@ -958,7 +963,7 @@ p { margin: 0; }
 
   .picker { justify-items: end; text-align: right; }
   .picker__status { justify-content: flex-end; }
-  .picker__options { justify-content: flex-end; max-width: 560px; }
+  .picker__options { flex-wrap: nowrap; justify-content: flex-end; }
 }
 
 /* ---------- Movimiento reducido ---------- */
