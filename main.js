@@ -129,12 +129,12 @@
   // Cada patrón devuelve valores alrededor de 0 (aprox. −1 a 1).
   const PATTERNS = {
     veta: function (random) {
-      const warp = [periodicNoise(random, 3, 2), periodicNoise(random, 6, 4), periodicNoise(random, 12, 8)];
+      const warp = [periodicNoise(random, 2, 1), periodicNoise(random, 4, 2), periodicNoise(random, 8, 3)];
       const fibre = periodicNoise(random, 160, 12);
       return function (u, v) {
         const w = fbm(warp, u, v);
-        const rings = Math.sin(2 * Math.PI * (u * 9 + w * 2.6));
-        const lines = Math.sin(2 * Math.PI * (u * 31 + w * 5));
+        const rings = Math.sin(2 * Math.PI * (u * 9 + w * 1.6));
+        const lines = Math.sin(2 * Math.PI * (u * 31 + w * 3));
         const pore = random() < 0.012 ? -0.8 : 0;
         return rings * 0.45 + lines * 0.18 + (fibre(u, v) - 0.5) * 0.7 + pore;
       };
