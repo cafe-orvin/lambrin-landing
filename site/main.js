@@ -74,36 +74,178 @@
   function accentLabel(acento) { return acento ? 'Con acento' : 'Sin acento'; }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
-  // ---------- Texturas conceptuales (T05) ----------
+  // ---------- Texturas conceptuales (ADR-0002) ----------
+  // Se generan en el navegador con semilla fija: siempre el mismo resultado.
+  // Son una interpretación visual del nombre del acabado, no una textura del producto.
 
-  function textureFor() { return null; }
+  function seeded(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      let t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // Ruido de valor periódico: el mosaico se repite sin costuras.
+  function periodicNoise(random, px, py) {
+    const grid = new Float32Array(px * py);
+    for (let i = 0; i < grid.length; i++) grid[i] = random();
+    return function (u, v) {
+      const x = u * px;
+      const y = v * py;
+      const x0 = Math.floor(x);
+      const y0 = Math.floor(y);
+      const fx = x - x0;
+      const fy = y - y0;
+      const sx = fx * fx * (3 - 2 * fx);
+      const sy = fy * fy * (3 - 2 * fy);
+      const xa = ((x0 % px) + px) % px;
+      const ya = ((y0 % py) + py) % py;
+      const xb = (xa + 1) % px;
+      const yb = (ya + 1) % py;
+      const a = grid[ya * px + xa];
+      const b = grid[ya * px + xb];
+      const c = grid[yb * px + xa];
+      const d = grid[yb * px + xb];
+      return a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+    };
+  }
+
+  function fbm(layers, u, v) {
+    let sum = 0;
+    let amp = 0.5;
+    let norm = 0;
+    for (let i = 0; i < layers.length; i++) {
+      sum += layers[i](u, v) * amp;
+      norm += amp;
+      amp *= 0.5;
+    }
+    return sum / norm;
+  }
+
+  // Cada patrón devuelve valores alrededor de 0 (aprox. −1 a 1).
+  const PATTERNS = {
+    veta: function (random) {
+      const warp = [periodicNoise(random, 3, 2), periodicNoise(random, 6, 4), periodicNoise(random, 12, 8)];
+      const fibre = periodicNoise(random, 160, 12);
+      return function (u, v) {
+        const w = fbm(warp, u, v);
+        const rings = Math.sin(2 * Math.PI * (u * 9 + w * 2.6));
+        const lines = Math.sin(2 * Math.PI * (u * 31 + w * 5));
+        const pore = random() < 0.012 ? -0.8 : 0;
+        return rings * 0.45 + lines * 0.18 + (fibre(u, v) - 0.5) * 0.7 + pore;
+      };
+    },
+    mineral: function (random) {
+      const layers = [4, 8, 16, 32, 64].map(function (p) { return periodicNoise(random, p, p); });
+      return function (u, v) {
+        const speck = random() < 0.018 ? (random() - 0.5) * 1.6 : 0;
+        return (fbm(layers, u, v) - 0.5) * 1.8 + speck + (random() - 0.5) * 0.18;
+      };
+    },
+    tejido: function (random) {
+      const threads = 32;
+      const vertical = periodicNoise(random, threads, 4);
+      const horizontal = periodicNoise(random, 4, threads);
+      return function (u, v) {
+        const cx = Math.floor(u * threads);
+        const cy = Math.floor(v * threads);
+        const over = (cx + cy) % 2 === 0;
+        const profile = over ? Math.sin(Math.PI * (u * threads - cx)) : Math.sin(Math.PI * (v * threads - cy));
+        const slub = (over ? vertical(u, v) : horizontal(u, v)) - 0.5;
+        return (profile - 0.62) * 1.1 + slub * 0.7 + (random() - 0.5) * 0.15;
+      };
+    }
+  };
+
+  const textureCache = {};
+
+  function renderTile(size, sample, gain) {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    const image = ctx.createImageData(size, size);
+    const data = image.data;
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const g = Math.max(0, Math.min(255, 128 + sample(x / size, y / size) * gain));
+        const i = (y * size + x) * 4;
+        data[i] = data[i + 1] = data[i + 2] = g;
+        data[i + 3] = 255;
+      }
+    }
+    ctx.putImageData(image, 0, 0);
+    return 'url("' + canvas.toDataURL('image/png') + '")';
+  }
+
+  function textureFor(finish) {
+    if (!(finish.id in textureCache)) {
+      const size = finish.textura.tipo === 'tejido' ? 256 : 512;
+      const sample = PATTERNS[finish.textura.tipo](seeded(finish.textura.semilla));
+      textureCache[finish.id] = renderTile(size, sample, 92 * finish.textura.contraste);
+    }
+    return textureCache[finish.id];
+  }
+
+  function cachedTexture(finish) {
+    return textureCache[finish.id] || null;
+  }
+
+  // Genera las texturas restantes en momentos libres para no bloquear la primera pintura.
+  function warmTextures() {
+    const queue = FINISHES.slice();
+    const idle = window.requestIdleCallback
+      ? function (callback) { window.requestIdleCallback(callback, { timeout: 600 }); }
+      : function (callback) { window.setTimeout(callback, 60); };
+    (function next() {
+      const finish = queue.shift();
+      if (!finish) return;
+      textureFor(finish);
+      paintSamples(finish);
+      idle(next);
+    })();
+  }
+
+  function paintGrain() {
+    const random = seeded(7);
+    const grain = renderTile(160, function () { return random() - 0.5; }, 120);
+    if (grain) scene.style.setProperty('--grain', grain);
+  }
 
   // ---------- Pintado ----------
 
-  function paint(el, finish) {
+  // La escena genera su textura al momento; las muestras usan la que ya esté en caché.
+  function paint(el, finish, texture) {
     el.style.setProperty('--wall-base', finish.paleta.base);
     el.style.setProperty('--wall-light', finish.paleta.luz);
     el.style.setProperty('--wall-shadow', finish.paleta.sombra);
     el.style.setProperty('--texture-size', finish.textura.escala + 'px');
-    const texture = textureFor(finish);
     if (texture) el.style.setProperty('--texture', texture);
+    else el.style.removeProperty('--texture');
   }
 
   function paintSamples(finish) {
-    document.querySelectorAll('[data-paint="' + finish.id + '"]').forEach(function (el) { paint(el, finish); });
+    const texture = cachedTexture(finish);
+    document.querySelectorAll('[data-paint="' + finish.id + '"]').forEach(function (el) { paint(el, finish, texture); });
     Object.keys(INSPIRATIONS).forEach(function (key) {
       if (INSPIRATIONS[key].acabadoId !== finish.id) return;
       const mini = document.querySelector('[data-idea-scene="' + key + '"]');
-      if (mini) paint(mini, finish);
+      if (mini) paint(mini, finish, texture);
     });
   }
 
   function showSurface(finish, initial) {
+    const texture = textureFor(finish);
     if (initial) {
-      paint(front, finish);
+      paint(front, finish, texture);
       return;
     }
-    paint(back, finish);
+    paint(back, finish, texture);
     back.classList.add('is-front');
     front.classList.remove('is-front');
     const previous = front;
@@ -143,7 +285,7 @@
     document.getElementById('cta-finish').textContent = finish.nombre;
     document.getElementById('cta-mode').textContent = modeLabel(state.modo);
     document.getElementById('cta-accent').textContent = accentLabel(state.acento);
-    paint(document.getElementById('cta-swatch'), finish);
+    paint(document.getElementById('cta-swatch'), finish, textureFor(finish));
 
     if (options.announce) announcer.textContent = options.announce;
     if (finishChanged && options.writeHash) writeHash(finish.id);
@@ -283,4 +425,7 @@
   const initial = finishFromHash();
   if (initial) state.acabadoId = initial;
   render(false, { initial: true });
+  paintSamples(BY_ID[state.acabadoId]);
+  paintGrain();
+  warmTextures();
 })();
