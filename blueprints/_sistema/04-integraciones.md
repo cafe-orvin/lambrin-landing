@@ -1,5 +1,5 @@
 # 04 — Integraciones
-Estado: Aprobado en PG2 (2026-10-28)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
 
 **Ninguna.** La página no carga fuentes, scripts, imágenes, mapas, analítica ni servicios de terceros, y no hace llamadas de red.
 

@@ -1,8 +1,8 @@
 # 06 — Inventario funcional
-Estado: Aprobado en PG2 (2026-10-28) · Repositorio previsto: `~/Documents/Orvin/Lambrin/lambrin-landing/` (se crea en F4)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Repositorio: `~/Documents/Orvin/Lambrin/lambrin-landing/`, rama `arq/lambrin-landing`
 
-## Funcionalidad prevista
-| Funcionalidad | Módulo | Ruta prevista |
+## Funcionalidad construida
+| Funcionalidad | Módulo | Ruta |
 |---|---|---|
 | Estructura, textos y avisos | Marcado | `site/index.html` |
 | Escena, capas de luz, apagadores, secciones, responsive, movimiento reducido | Estilos | `site/styles.css` |
@@ -20,3 +20,8 @@ Estado: Aprobado en PG2 (2026-10-28) · Repositorio previsto: `~/Documents/Orvin
 | «Lambrin Estudio», «Colección esencial», «Línea natural / 2026» | Demo 2 | Descartados por no estar verificados. |
 
 Las rutas y SHA-256 de las demos están en `../00-inicio.md` §9.
+
+## Entorno de prueba (fuera del repositorio)
+| Elemento | Ruta | Nota |
+|---|---|---|
+| Entrada `lambrin-landing` del servidor de vista previa | `~/Documents/Orvin/SC360/.claude/launch.json` | Autorizada en el chat para T07. Sirve una copia de `site/` desde la carpeta temporal de la sesión, porque macOS no permite al servidor leer `~/Documents`. Respaldo: `SC360/backups/launch.json.pre-lambrin-2026-10-28.bak`. |

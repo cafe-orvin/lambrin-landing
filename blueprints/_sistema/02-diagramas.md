@@ -1,5 +1,5 @@
 # 02 — Diagramas
-Estado: Aprobado en PG2 (2026-10-28)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
 
 ## C4 · Contexto
 ```mermaid

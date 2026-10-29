@@ -1,5 +1,5 @@
 # 00 — Contexto: Landing Lambrin
-Fecha: 2026-10-28 · Estado: Aprobado en PG2 (2026-10-28) · Origen: `../00-inicio.md` (PG0) y `../01-descubrimiento.md` (PG1)
+Fecha: 2026-10-28 · Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Origen: `../00-inicio.md` (PG0) y `../01-descubrimiento.md` (PG1)
 
 ## Propósito
 Landing estática y conceptual de Lambrin, marca de acabados arquitectónicos para muros. El muro es el protagonista: una escena a gran escala muestra cada uno de los seis acabados con luz natural de ventana, lámpara discreta y luz de acento.
@@ -12,7 +12,7 @@ Landing estática y conceptual de Lambrin, marca de acabados arquitectónicos pa
 Una página con seis secciones:
 1. Encabezado mínimo: nombre «LAMBRIN» en texto y navegación por anclas.
 2. Escena principal: muro, ventana, lámpara y dos apagadores (día/noche y acento).
-3. Selector de acabados: Nogal, Encino, Natural, Negro, Gris y Lino, con vista de detalle del acabado activo.
+3. Selector de acabados (Nogal, Encino, Natural, Negro, Gris y Lino) dentro de la escena principal, y sección «Acabados» con las seis vistas de detalle para comparar.
 4. Valor: tres ideas breves sobre diseño e iluminación del muro, sin atributos técnicos.
 5. Inspiración: ideas por tipo de espacio que aplican una combinación de acabado y luz a la escena.
 6. Llamada a la acción final y pie con avisos de simulación.

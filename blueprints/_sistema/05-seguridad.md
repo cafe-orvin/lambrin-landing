@@ -1,5 +1,5 @@
 # 05 — Seguridad y privacidad
-Estado: Aprobado en PG2 (2026-10-28)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
 
 | Amenaza o riesgo | Mitigación |
 |---|---|

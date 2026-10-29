@@ -1,5 +1,5 @@
 # 03 — Modelo de datos
-Estado: Aprobado en PG2 (2026-10-28)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
 
 No hay base de datos, persistencia ni datos personales. Todo es configuración estática en `main.js` y estado en memoria. Dueño de los datos: el proyecto Lambrin; los valores visuales son **conceptuales** y no provienen de un catálogo.
 

@@ -1,5 +1,5 @@
 # 01 — Requisitos y criterios de aceptación
-Estado: Aprobado en PG2 (2026-10-28) · Fuente: `../01-descubrimiento.md` (PG1)
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Fuente: `../01-descubrimiento.md` (PG1)
 
 Cada criterio indica cómo se verifica: **E** = inspección estática del código (permitida sin autorización); **N** = navegador o prueba de humo (requiere autorización explícita; sin ella queda «not smoke-tested»).
 
@@ -29,3 +29,6 @@ Cada criterio indica cómo se verifica: **E** = inspección estática del códig
 | RNF-006 | Sin dependencias ni red. | CA-017: el código no contiene URL `http(s)://`, `@import`, `fetch`, `XMLHttpRequest` ni fuentes web; funciona desde `file://` con `<script>` clásico (sin módulos). | E |
 | RNF-007 | Sin datos personales. | CA-018: no hay campos de entrada, cookies ni `localStorage`. | E |
 | RNF-008 | Rendimiento razonable. | CA-019: texturas generadas una sola vez por acabado y reutilizadas; animaciones solo con `opacity` y `transform`. | E |
+
+## Resultado (F4)
+19 de 19 criterios cumplen; CA-015 verificado solo en código. Evidencia en `../lambrin-landing/verificacion.md`.

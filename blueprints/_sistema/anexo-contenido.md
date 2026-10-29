@@ -1,5 +1,5 @@
 # Anexo — Borrador de contenido
-Estado: Aprobado en PG2 (2026-10-28) · Español de México · Sin cifras, materiales, especificaciones, clientes ni testimonios.
+Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Español de México · Sin cifras, materiales, especificaciones, clientes ni testimonios.
 
 ## Encabezado
 LAMBRIN · Acabados · Ideas · Contacto
@@ -44,3 +44,6 @@ Cada idea tiene el botón «Ver en la escena».
 - Lambrin · Acabados arquitectónicos para muros.
 - Las escenas son representaciones conceptuales: el color y la textura son simulados y pueden diferir del producto.
 - Esta página no incluye precios ni especificaciones; cualquier dato comercial debe validarse con el catálogo.
+
+## Texto agregado en F4
+- Bajo el título de «Seis acabados»: «Vistas de detalle conceptuales · color y textura simulados» (refuerza RF-009).

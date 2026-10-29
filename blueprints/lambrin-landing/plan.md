@@ -124,4 +124,4 @@ Archivo principal: `~/Documents/Orvin/Lambrin/lambrin-landing/site/index.html` (
 ## Resultado de F4 — 2026-10-28
 - T01–T06 construidas y verificadas; T07 (prueba de humo) autorizada y ejecutada antes de T06. Detalle en `verificacion.md`.
 - Entrega: `~/Documents/Orvin/Lambrin/lambrin-landing/site/index.html` en la rama `arq/lambrin-landing`.
-- Pendiente: PG4 de esta épica.
+- PG4 aprobado por el usuario en el chat el 2026-10-28 («Aprobar PG4»). Siguiente: cierre F5 y PG5.
