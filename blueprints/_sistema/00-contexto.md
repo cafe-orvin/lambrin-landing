@@ -1,35 +1,27 @@
-# 00 — Contexto: Landing Lambrin
-Fecha: 2026-10-28 · Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Origen: `../00-inicio.md` (PG0) y `../01-descubrimiento.md` (PG1)
+# 00 — Contexto: Landing Lambrin (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29 · Fuente: `../lambrin-v2/propuesta.md`
 
 ## Propósito
-Landing estática y conceptual de Lambrin, marca de acabados arquitectónicos para muros. El muro es el protagonista: una escena a gran escala muestra cada uno de los seis acabados con luz natural de ventana, lámpara discreta y luz de acento.
+Landing estática que vende el catálogo completo de Lambrin (13 productos, 44 colores y 5 accesorios) con escenas fotográficas, movimiento e interacción, y que lleva al visitante a cotizar por WhatsApp. La v1 conceptual se conserva en la etiqueta `lambrin-v1`.
 
 ## Actores
-- **Visitante:** explora acabados e iluminación desde móvil o escritorio.
-- **Asesor comercial:** presenta la página como apoyo visual.
+- **Visitante** (dueño de casa, arquitecto, diseñador o contratista): explora, compara, calcula y arma su cotización.
+- **Asesor de Lambrin:** recibe por WhatsApp un mensaje con productos, colores, cantidades y total estimado.
 
 ## Alcance
-Una página con seis secciones:
-1. Encabezado mínimo: nombre «LAMBRIN» en texto y navegación por anclas.
-2. Escena principal: muro, ventana, lámpara y dos apagadores (día/noche y acento).
-3. Selector de acabados (Nogal, Encino, Natural, Negro, Gris y Lino) dentro de la escena principal, y sección «Acabados» con las seis vistas de detalle para comparar.
-4. Valor: tres ideas breves sobre diseño e iluminación del muro, sin atributos técnicos.
-5. Inspiración: ideas por tipo de espacio que aplican una combinación de acabado y luz a la escena.
-6. Llamada a la acción final y pie con avisos de simulación.
+Portada con escenas, manifiesto con cifras, catálogo filtrable con fichas (medidas, colores, precios, lupa), visualizador «Pruébalo en tu muro», calculadora de piezas, galería horizontal, accesorios, pasos para cotizar, llamada final, pie con avisos y créditos, lista de cotización y botón flotante.
 
 ## No-objetivos
-Tienda, cotizador, formularios, captura de datos, analítica, despliegue, dominio, fotografía o textura real, testimonios, clientes, proyectos realizados, precios, medidas, materiales, formato de pieza o modulación, especificaciones, disponibilidad, certificaciones y datos del proveedor.
+Pago en línea, inventario en tiempo real, cuentas, backend, formularios que guarden datos, CMS, varios idiomas, despliegue hecho por Claude y compra del dominio.
 
 ## Restricciones
-- Supuestos aprobados en PG1: S1 (independiente de SC360), S2 (sin más adjuntos), S3 (sin fotografías; representación conceptual), S4 (sin canal de contacto), S5 (sin herencia de Codex).
-- Sin dependencias, frameworks, servicios ni recursos remotos.
-- La página debe abrirse directamente desde el disco (`file://`) sin servidor.
+- HTML, CSS y JS nativos, sin compilación ni dependencias (ADR-0001); funciona desde `file://` y desde cualquier hosting estático.
+- Fuentes autoalojadas (ADR-0008). Sin solicitudes a terceros al cargar; el único enlace externo es `wa.me`.
+- Sin afirmaciones técnicas que no estén en el catálogo (supuesto S5 de la propuesta).
 
-## Datos pendientes del proyecto
+## Datos pendientes
 | Dato | Efecto mientras falte |
 |---|---|
-| Canal de contacto real | El CTA muestra «Canal de contacto pendiente de confirmar», sin acción. |
-| Fotografías aprobadas por acabado | Representación conceptual con aviso de simulación. |
-| Logotipo e identidad de Lambrin | Nombre en texto con tipografía del sistema. |
-| Catálogo (precios, especificaciones, formato) | No se muestra ningún dato comercial. |
-| Dominio y hosting | Fuera de alcance; no se despliega. |
+| Número de WhatsApp | Botones con «Contacto próximamente»; botón flotante de WhatsApp oculto. |
+| Dominio | `TU-DOMINIO` en `robots.txt` y `sitemap.xml`; `og:image` relativa. |
+| Fotos propias de Lambrin | Escenas de Unsplash con nota «Imagen ilustrativa» (ADR-0005). |

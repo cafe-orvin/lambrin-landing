@@ -1,40 +1,42 @@
-# 03 — Modelo de datos
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
+# 03 — Modelo de datos (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29
 
-No hay base de datos, persistencia ni datos personales. Todo es configuración estática en `main.js` y estado en memoria. Dueño de los datos: el proyecto Lambrin; los valores visuales son **conceptuales** y no provienen de un catálogo.
+Sin base de datos ni datos personales. La configuración vive en `site/js/catalogo.js` (ADR-0006); la lista de cotización se guarda solo en el `localStorage` del visitante con la clave `lambrin-cotizacion`.
 
 ```mermaid
 erDiagram
-  FINISH ||--o{ INSPIRATION : "se sugiere en"
-  STATE }o--|| FINISH : "muestra"
-  FINISH {
-    string id "nogal | encino | natural | negro | gris | lino"
+  PRODUCTO ||--|{ COLOR : tiene
+  PRODUCTO {
+    string id
     string nombre
-    string tono "frase breve sobre la simulación, no sobre el producto"
-    object paleta "base, luz, sombra"
-    object textura "tipo, escala, contraste, semilla"
-    object escena "ambienteDia, ambienteNoche, intensidadLampara, intensidadAcento, calidezLuz"
+    string serie
+    string linea "interior | exterior"
+    string escena "archivo en assets/escenas"
+    object medida "largo, ancho, espesor (cm)"
+    object precio "pieza, caja {precio, piezas} | null, soloCaja"
+    object visual "modo listones|lamina|celosia|mosaico|tablero, muestraCm, altoCm | null"
+    string calc "superficie | piso | viga"
   }
-  INSPIRATION {
-    string espacio
-    string texto
-    string acabadoId
-    string modo "dia | noche"
-    bool acento
+  COLOR {
+    string id
+    string nombre
+    string muestra "archivo en assets/muestras"
+    string tono "hex de respaldo"
+    bool agotado
+    bool soloTono
   }
-  STATE {
-    string acabadoId
-    string modo
-    bool acento
+  ACCESORIO { string id  string nombre  number precio  string muestra }
+  ITEM_COTIZACION {
+    string tipo "producto | accesorio"
+    string id
+    string color
+    string unidad "pieza | caja"
+    number qty
   }
-  CONTACT {
-    string channel "null mientras no exista un canal real"
-  }
+  CONTACT { string whatsapp "solo dígitos; vacío = pendiente"  string saludo }
 ```
 
 ## Reglas
-- `textura.tipo` toma uno de tres patrones conceptuales: `veta` (Nogal, Encino, Natural), `mineral` (Negro, Gris) y `tejido` (Lino). Es una interpretación visual del nombre, no una afirmación de material.
-- Sin juntas ni modulación visibles: el formato de pieza no está verificado.
-- `escena` ajusta cuánto se ilumina cada acabado para que los oscuros (Nogal, Negro) se lean igual de bien que los claros. No cambia la geometría.
-- `CONTACT.channel` solo puede recibir un canal confirmado por el usuario; cambiarlo requiere aprobación (es una integración).
-- El estado inicial es Nogal, día, sin acento, salvo que el hash indique otro acabado.
+- Precios en MXN tal como el catálogo; leyenda `LEYENDA_PRECIOS`. No se menciona IVA.
+- Calculadora: piezas = ⌈área × (1 + merma) / (largo × ancho)⌉; vigas = ⌈(ancho + separación) / (ancho viga + separación)⌉ × tramos × (1 + merma). Merma por defecto 10 % (5 o 15 % opcional). Combinación: mínimo costo entre k cajas + piezas sueltas; con `soloCaja`, solo cajas.
+- Visualizador: muro de referencia de 300 cm de ancho; el ancho de cada mosaico en pantalla es proporcional a `muestraCm`.

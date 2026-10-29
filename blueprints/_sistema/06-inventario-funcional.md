@@ -1,27 +1,24 @@
-# 06 — Inventario funcional
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Repositorio: `~/Documents/Orvin/Lambrin/lambrin-landing/`, rama `arq/lambrin-landing`
+# 06 — Inventario funcional (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; PG5 2026-10-29 · Repositorio: `~/Documents/Orvin/Lambrin/lambrin-landing` (worktree `lambrin-landing-v2`, rama `arq/lambrin-v2`)
 
-## Funcionalidad construida
 | Funcionalidad | Módulo | Ruta |
 |---|---|---|
-| Estructura, textos y avisos | Marcado | `site/index.html` |
-| Escena, capas de luz, apagadores, secciones, responsive, movimiento reducido | Estilos | `site/styles.css` |
-| Datos `FINISHES`, `INSPIRATIONS`, `CONTACT` | Configuración | `site/main.js` |
-| Generador de texturas conceptuales | Lógica | `site/main.js` |
-| Estado, selector, apagadores, deslizamiento, hash, anuncios, CTA | Lógica | `site/main.js` |
+| Estructura, SEO, diálogos (ficha y cotización), avisos | Marcado | `site/index.html` |
+| Diseño, telón, portada, revelado, galería anclada, responsive, movimiento reducido | Estilos | `site/css/styles.css` |
+| Catálogo, accesorios, portada, galería, créditos, CONTACT, leyenda, merma | Datos | `site/js/catalogo.js` |
+| Tarjetas, filtros, rejilla, inclinación 3D | Lógica | `site/js/main.js` |
+| Ficha con lupa, contadores, precios, unidad y cantidad | Lógica | `site/js/main.js` |
+| Visualizador (listones, lámina, celosía, mosaico, tablero; luces; comparación) | Lógica | `site/js/main.js` |
+| Calculadora (superficie, piso, vigas) | Lógica | `site/js/main.js` |
+| Lista de cotización, copiar pedido, WhatsApp | Lógica | `site/js/main.js` |
+| Escenas (26 fotos × 2–3 tamaños) | Recursos | `site/assets/escenas/` |
+| Muestras de color y accesorios (49) | Recursos | `site/assets/muestras/` |
+| Fuentes y licencias | Recursos | `site/assets/fuentes/` |
+| Favicon, Open Graph, robots, sitemap, `.htaccess` | Publicación | `site/` |
+| Guía de publicación y paquete | Entrega | `PUBLICAR.md`, `lambrin-sitio-v2.zip` (ignorado en git) |
 
-## Referencias revisadas (no se modifican)
-| Funcionalidad | Origen | Tratamiento |
-|---|---|---|
-| Capas de escena CSS y apagadores `role="switch"` | Demo 2 de Codex | Se reescriben con el modelo de capas de `02-diagramas.md`. |
-| Nombres de los seis acabados | Demo 2 | Se conservan. |
-| Tonos hexadecimales de la demo | Demo 2 | Punto de partida; se ajustan en F4 y siguen siendo conceptuales. |
-| Modal de cotización | Demo 1 | Descartado. |
-| «Lambrin Estudio», «Colección esencial», «Línea natural / 2026» | Demo 2 | Descartados por no estar verificados. |
-
-Las rutas y SHA-256 de las demos están en `../00-inicio.md` §9.
+## Retirado de la v1
+Generador de texturas en canvas, apagadores `role="switch"`, hash de acabado y bloque CTA sin canal (en la etiqueta `lambrin-v1`).
 
 ## Entorno de prueba (fuera del repositorio)
-| Elemento | Ruta | Nota |
-|---|---|---|
-| Entrada `lambrin-landing` del servidor de vista previa (retirada en PG5) | `~/Documents/Orvin/SC360/.claude/launch.json` | Autorizada en el chat para T07 y retirada en PG5 restaurando el respaldo (SHA-256 `769baf5e…6921fb`). Sirve una copia de `site/` desde la carpeta temporal de la sesión, porque macOS no permite al servidor leer `~/Documents`. Respaldo: `SC360/backups/launch.json.pre-lambrin-2026-10-28.bak`. |
+Entrada temporal `lambrin-v2-prueba` en `~/Documents/Orvin/SC360/.claude/launch.json` (puerto 4394), autorizada en el chat y retirada al terminar T07 restaurando el respaldo (SHA-256 `769baf5e…6921fb`).

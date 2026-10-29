@@ -3,219 +3,397 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Lambrin · Acabados arquitectónicos para muros. Escenas conceptuales: color y textura simulados.">
-  <meta name="theme-color" content="#1a1613">
-  <title>Lambrin — Acabados para muros</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="main.js" defer></script>
+  <title>Lambrin · Lambrines, paneles, mármol PVC y piedra para interior y exterior</title>
+  <meta name="description" content="Catálogo Lambrin: lambrines de interior y exterior, láminas de mármol PVC, vigas, paneles acústicos, piedra PU, piedras flexibles y deck. Precios, medidas, 44 acabados, calculadora de piezas y cotización por WhatsApp.">
+  <meta name="theme-color" content="#14110f">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:title" content="Lambrin · Acabados para muros, techos y fachadas">
+  <meta property="og:description" content="Lambrines, mármol PVC, vigas, piedra y deck para interior y exterior. Elige tu acabado, calcula tus piezas y cotiza por WhatsApp.">
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fuentes/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fuentes/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/catalogo.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="#escena">LAMBRIN</a>
-    <nav class="site-nav" aria-label="Secciones">
-      <a href="#acabados">Acabados</a>
-      <a href="#ideas">Ideas</a>
-      <a href="#contacto">Contacto</a>
+<body class="is-loading">
+  <a class="skip" href="#catalogo">Saltar al catálogo</a>
+
+  <!-- Telón de entrada: listones que se abren -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__slats"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="intro__mark">LAMBRIN</div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="Lambrin, inicio">LAMBRIN</a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#visualizador">Pruébalo</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#inspiracion">Inspiración</a>
+      <a href="#accesorios">Accesorios</a>
     </nav>
+    <button class="nav__quote" type="button" data-open-cart aria-label="Abrir lista de cotización">
+      <span>Cotización</span><b class="cart-count" data-cart-count>0</b>
+    </button>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><i></i><i></i></button>
   </header>
 
+  <div class="mobile-menu" id="menu-movil" hidden>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#visualizador">Pruébalo en tu muro</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#inspiracion">Inspiración</a>
+    <a href="#accesorios">Accesorios</a>
+    <a href="#contacto">Cotizar</a>
+  </div>
+
   <main>
-    <!-- Escena principal: representación conceptual (ADR-0002) -->
-    <section class="scene" id="escena" aria-labelledby="hero-title">
-      <div class="stage" aria-hidden="true">
-        <div class="wall">
-          <div class="surface is-front" data-surface>
-            <div class="surface__texture"></div>
-            <div class="surface__graze surface__graze--lamp"></div>
-            <div class="surface__graze surface__graze--accent"></div>
+    <!-- PORTADA -->
+    <section class="hero" aria-label="Portada">
+      <div class="hero__media" data-hero>
+        <figure class="hero__slide is-active">
+          <img src="assets/escenas/hero-oscuro-1600.webp" srcset="assets/escenas/hero-oscuro-800.webp 800w, assets/escenas/hero-oscuro-1600.webp 1600w, assets/escenas/hero-oscuro-2400.webp 2400w" sizes="100vw" alt="Muro de listones de madera oscura con chimenea y lámparas colgantes" fetchpriority="high">
+        </figure>
+        <figure class="hero__slide">
+          <img src="assets/escenas/hero-calido-1600.webp" srcset="assets/escenas/hero-calido-800.webp 800w, assets/escenas/hero-calido-1600.webp 1600w, assets/escenas/hero-calido-2400.webp 2400w" sizes="100vw" alt="Cocina con muro de listones claros iluminados por una repisa" loading="lazy">
+        </figure>
+        <figure class="hero__slide">
+          <img src="assets/escenas/hero-fachada-1600.webp" srcset="assets/escenas/hero-fachada-800.webp 800w, assets/escenas/hero-fachada-1600.webp 1600w, assets/escenas/hero-fachada-2400.webp 2400w" sizes="100vw" alt="Casa moderna de dos pisos con fachada de listones de madera" loading="lazy">
+        </figure>
+        <div class="hero__wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="hero__light" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="eyebrow" data-reveal>Interior · Exterior · Importación</p>
+        <h1 class="hero__title" data-split>Muros que se <em>sienten</em> antes de tocarlos.</h1>
+        <p class="hero__lead" data-reveal>Lambrines, mármol PVC, vigas, paneles, piedra y deck. Cuarenta y cuatro acabados para transformar muros, techos y fachadas.</p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--light" href="#catalogo">Ver catálogo</a>
+          <a class="btn btn--ghost" href="#calculadora">Calcula tu muro</a>
+        </div>
+      </div>
+
+      <div class="hero__meta" aria-live="off">
+        <div class="hero__caption"><b data-hero-title>Lambrin Interior</b><span data-hero-note>Tonos profundos</span></div>
+        <div class="hero__dots" role="tablist" aria-label="Escenas de portada">
+          <button type="button" role="tab" aria-selected="true" aria-label="Escena 1"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Escena 2"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Escena 3"></button>
+        </div>
+        <span class="hero__note">Imagen ilustrativa</span>
+      </div>
+      <a class="hero__scroll" href="#manifiesto" aria-label="Bajar"><span></span></a>
+    </section>
+
+    <!-- CINTA -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee></div>
+    </div>
+
+    <!-- MANIFIESTO -->
+    <section class="manifesto" id="manifiesto" aria-labelledby="manifiesto-t">
+      <p class="eyebrow" data-reveal>Sobre nosotros</p>
+      <h2 class="manifesto__text" id="manifiesto-t" data-scrub>Somos una empresa que se especializa en la importación de materiales para decoración de interior y exterior de alta calidad.</h2>
+      <dl class="stats">
+        <div data-reveal><dt><span data-count="13">0</span></dt><dd>líneas de producto</dd></div>
+        <div data-reveal><dt><span data-count="44">0</span></dt><dd>acabados y colores</dd></div>
+        <div data-reveal><dt><span data-count="290">0</span><small>cm</small></dt><dd>de largo en lambrines, vigas, deck y paneles de muro y techo</dd></div>
+        <div data-reveal><dt><span data-count="2">0</span></dt><dd>mundos: interior y exterior</dd></div>
+      </dl>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="catalog" id="catalogo" aria-labelledby="catalogo-t">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Catálogo 2026</p>
+        <h2 id="catalogo-t" data-split>Elige el material. <em>Después</em>, el tono.</h2>
+        <p class="section-head__lead" data-reveal>Toca un producto para ver sus colores, medidas y precios, agregarlo a tu cotización o probarlo en un muro.</p>
+      </div>
+      <div class="filters" role="tablist" aria-label="Filtrar catálogo">
+        <button type="button" role="tab" aria-selected="true" data-filter="todos">Todos <small data-filter-count="todos"></small></button>
+        <button type="button" role="tab" aria-selected="false" data-filter="interior">Interior <small data-filter-count="interior"></small></button>
+        <button type="button" role="tab" aria-selected="false" data-filter="exterior">Exterior <small data-filter-count="exterior"></small></button>
+        <span class="filters__ink" aria-hidden="true"></span>
+      </div>
+      <div class="grid" data-grid aria-live="polite"></div>
+      <noscript><p class="noscript">Activa JavaScript para ver el catálogo interactivo, la calculadora y la lista de cotización.</p></noscript>
+      <p class="legal-inline" data-leyenda></p>
+    </section>
+
+    <!-- VISUALIZADOR -->
+    <section class="viz" id="visualizador" aria-labelledby="viz-t">
+      <div class="section-head section-head--light">
+        <p class="eyebrow" data-reveal>Pruébalo en tu muro</p>
+        <h2 id="viz-t" data-split>Cambia el acabado. <em>Cambia la luz.</em></h2>
+        <p class="section-head__lead" data-reveal>Elige producto y color, cambia la iluminación y compara dos tonos lado a lado. Mueve el cursor sobre el muro para ver cómo la luz revela la textura.</p>
+      </div>
+
+      <div class="viz__layout">
+        <div class="viz__stage" data-viz-stage>
+          <div class="room" data-room>
+            <div class="room__wall" data-wall="a"><div class="room__tex"></div></div>
+            <div class="room__wall room__wall--b" data-wall="b"><div class="room__tex"></div></div>
+            <div class="room__light room__light--day" aria-hidden="true"></div>
+            <div class="room__light room__light--window" aria-hidden="true"></div>
+            <div class="room__light room__light--night" aria-hidden="true"></div>
+            <div class="room__light room__light--cove" aria-hidden="true"></div>
+            <div class="room__light room__light--accent" aria-hidden="true"></div>
+            <div class="room__torch" aria-hidden="true"></div>
+            <svg class="room__props" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="fl" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2a2420"/><stop offset="1" stop-color="#14110f"/></linearGradient>
+                <radialGradient id="sh" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+                <linearGradient id="led" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></linearGradient>
+              </defs>
+              <rect class="floor" x="0" y="742" width="1600" height="158" fill="url(#fl)"/>
+              <rect x="0" y="738" width="1600" height="6" fill="#0d0b0a" opacity=".6"/>
+              <ellipse cx="800" cy="770" rx="520" ry="26" fill="url(#sh)"/>
+              <!-- consola flotante -->
+              <rect x="430" y="610" width="740" height="64" rx="4" fill="#1b1714"/>
+              <rect class="led" x="440" y="674" width="720" height="60" fill="url(#led)" opacity="0"/>
+              <!-- jarrón y ramas -->
+              <path d="M520 610 q-18 -50 4 -86 q22 36 4 86z" fill="#3a3330"/>
+              <path d="M524 528 C 500 470, 470 430, 440 400 M524 528 C 540 460, 580 420, 610 390 M524 528 C 520 470, 530 420, 520 370" stroke="#4b4038" stroke-width="3" fill="none"/>
+              <!-- libros y esfera -->
+              <rect x="960" y="582" width="120" height="14" fill="#2e2824"/><rect x="972" y="568" width="100" height="14" fill="#3a332e"/>
+              <circle cx="1022" cy="546" r="22" fill="#26211d"/>
+              <!-- sillón -->
+              <path d="M1210 760 v-120 q0 -40 40 -40 h150 q40 0 40 40 v120 h-26 v-40 h-178 v40z" fill="#231e1b"/>
+              <rect x="1236" y="660" width="178" height="40" rx="10" fill="#2d2622"/>
+              <!-- planta -->
+              <path d="M240 760 h70 l-8 -70 h-54z" fill="#2a2420"/>
+              <path d="M275 690 C 230 600, 160 560, 120 540 M275 690 C 260 590, 280 520, 300 470 M275 690 C 320 610, 380 580, 420 560 M275 690 C 240 630, 200 600, 180 560" stroke="#2f3a2c" stroke-width="10" stroke-linecap="round" fill="none"/>
+              <!-- lámpara colgante -->
+              <line x1="800" y1="0" x2="800" y2="250" stroke="#1a1714" stroke-width="2"/>
+              <path class="lamp" d="M760 250 h80 l-14 38 h-52z" fill="#1d1916"/>
+            </svg>
+            <div class="room__compare" data-compare hidden>
+              <span class="room__handle" role="slider" tabindex="0" aria-label="Comparar acabados" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50"></span>
+              <b class="room__tag room__tag--a" data-tag-a></b>
+              <b class="room__tag room__tag--b" data-tag-b></b>
+            </div>
+            <span class="room__badge">Simulación · el color real puede variar</span>
           </div>
-          <div class="surface" data-surface>
-            <div class="surface__texture"></div>
-            <div class="surface__graze surface__graze--lamp"></div>
-            <div class="surface__graze surface__graze--accent"></div>
+        </div>
+
+        <div class="viz__panel">
+          <label class="field">
+            <span>Producto</span>
+            <select data-viz-product></select>
+          </label>
+          <div class="field">
+            <span>Color <b data-viz-color-name></b></span>
+            <div class="swatches" role="radiogroup" aria-label="Color" data-viz-swatches></div>
           </div>
-          <div class="light light--daywash"></div>
-          <div class="light light--sun-glow"></div>
-          <div class="light light--sun"></div>
-          <div class="light light--night"></div>
-          <div class="light light--lamp"></div>
-          <div class="light light--accent"></div>
-          <div class="light light--ceiling"></div>
-          <div class="light light--base"></div>
-          <div class="window"><span class="window__day"></span><span class="window__night"></span></div>
-          <div class="sconce"></div>
-        </div>
-        <div class="floor"><span class="floor__sun"></span><span class="floor__lamp"></span></div>
-        <div class="vignette"></div>
-        <div class="grain"></div>
-        <div class="shade shade--top"></div>
-        <div class="shade shade--bottom"></div>
-      </div>
-
-      <div class="plate" role="group" aria-label="Apagadores">
-        <button class="rocker" id="switch-day" type="button" role="switch" aria-checked="true" aria-label="Luz de día">
-          <span class="rocker__paddle" aria-hidden="true"></span>
-          <span class="rocker__led" aria-hidden="true"></span>
-          <span class="rocker__label" aria-hidden="true">Día</span>
-        </button>
-        <button class="rocker" id="switch-accent" type="button" role="switch" aria-checked="false" aria-label="Luz de acento">
-          <span class="rocker__paddle" aria-hidden="true"></span>
-          <span class="rocker__led" aria-hidden="true"></span>
-          <span class="rocker__label" aria-hidden="true">Acento</span>
-        </button>
-      </div>
-
-      <div class="hero">
-        <div class="hero__copy">
-          <p class="kicker">Acabados arquitectónicos para muros</p>
-          <h1 id="hero-title">El muro, en primer plano.</h1>
-          <p class="hero__lead">Elige un acabado y mira cómo cambia con la luz.</p>
-        </div>
-
-        <div class="picker">
-          <p class="picker__status">
-            <span class="picker__index" id="finish-index">01 / 06</span>
-            <span class="picker__name" id="finish-name">Nogal</span>
-            <span class="picker__tone" id="finish-tone">Oscuro y cálido</span>
-          </p>
-          <div class="picker__options" role="radiogroup" aria-label="Acabado">
-            <button class="chip" type="button" role="radio" aria-checked="true" tabindex="0" data-finish="nogal"><span class="chip__swatch" data-paint="nogal" aria-hidden="true"></span><span class="chip__name">Nogal</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" tabindex="-1" data-finish="encino"><span class="chip__swatch" data-paint="encino" aria-hidden="true"></span><span class="chip__name">Encino</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" tabindex="-1" data-finish="natural"><span class="chip__swatch" data-paint="natural" aria-hidden="true"></span><span class="chip__name">Natural</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" tabindex="-1" data-finish="negro"><span class="chip__swatch" data-paint="negro" aria-hidden="true"></span><span class="chip__name">Negro</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" tabindex="-1" data-finish="gris"><span class="chip__swatch" data-paint="gris" aria-hidden="true"></span><span class="chip__name">Gris</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" tabindex="-1" data-finish="lino"><span class="chip__swatch" data-paint="lino" aria-hidden="true"></span><span class="chip__name">Lino</span></button>
+          <div class="field">
+            <span>Iluminación</span>
+            <div class="seg" role="radiogroup" aria-label="Iluminación" data-viz-light>
+              <button type="button" role="radio" aria-checked="true" data-light="dia">Día</button>
+              <button type="button" role="radio" aria-checked="false" data-light="noche">Noche</button>
+              <button type="button" role="radio" aria-checked="false" data-light="acento">Acento</button>
+            </div>
           </div>
-          <p class="scene-note">Escena conceptual · color y textura simulados</p>
+          <div class="field field--row">
+            <button type="button" class="toggle" aria-pressed="false" data-viz-orient>Horizontal</button>
+            <button type="button" class="toggle" aria-pressed="false" data-viz-compare>Comparar dos tonos</button>
+          </div>
+          <div class="viz__summary">
+            <p><b data-viz-summary-name></b><span data-viz-summary-meta></span></p>
+            <div class="viz__actions">
+              <button type="button" class="btn btn--dark" data-viz-add>Agregar a cotización</button>
+              <a class="link-arrow" href="#calculadora" data-viz-calc>Calcular piezas</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="acabados" aria-labelledby="acabados-title">
-      <div class="section__head">
-        <p class="eyebrow">Acabados</p>
-        <h2 id="acabados-title">Seis acabados. Una misma luz para compararlos.</h2>
-        <p class="section__note">Vistas de detalle conceptuales · color y textura simulados</p>
+    <!-- CALCULADORA -->
+    <section class="calc" id="calculadora" aria-labelledby="calc-t">
+      <div class="calc__intro">
+        <p class="eyebrow" data-reveal>Calculadora</p>
+        <h2 id="calc-t" data-split>¿Cuántas piezas <em>necesitas?</em></h2>
+        <p data-reveal>Escribe las medidas de tu muro, techo o piso. Calculamos piezas con merma, la combinación más económica de cajas y piezas sueltas, y un total estimado.</p>
+        <p class="calc__fine" data-reveal>Es una estimación. Confirma medidas y cantidades con un asesor antes de comprar.</p>
       </div>
-      <ul class="finish-grid">
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="nogal" aria-hidden="true"></div>
-          <h3>Nogal</h3>
-          <p>Oscuro y cálido</p>
-          <button class="text-button" type="button" data-show-finish="nogal" aria-label="Ver Nogal en la escena">Ver en la escena</button>
-        </li>
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="encino" aria-hidden="true"></div>
-          <h3>Encino</h3>
-          <p>Claro y sereno</p>
-          <button class="text-button" type="button" data-show-finish="encino" aria-label="Ver Encino en la escena">Ver en la escena</button>
-        </li>
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="natural" aria-hidden="true"></div>
-          <h3>Natural</h3>
-          <p>Luminoso y suave</p>
-          <button class="text-button" type="button" data-show-finish="natural" aria-label="Ver Natural en la escena">Ver en la escena</button>
-        </li>
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="negro" aria-hidden="true"></div>
-          <h3>Negro</h3>
-          <p>Profundo y sobrio</p>
-          <button class="text-button" type="button" data-show-finish="negro" aria-label="Ver Negro en la escena">Ver en la escena</button>
-        </li>
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="gris" aria-hidden="true"></div>
-          <h3>Gris</h3>
-          <p>Neutro y arquitectónico</p>
-          <button class="text-button" type="button" data-show-finish="gris" aria-label="Ver Gris en la escena">Ver en la escena</button>
-        </li>
-        <li class="finish-card">
-          <div class="finish-card__tile" data-paint="lino" aria-hidden="true"></div>
-          <h3>Lino</h3>
-          <p>Pálido y tranquilo</p>
-          <button class="text-button" type="button" data-show-finish="lino" aria-label="Ver Lino en la escena">Ver en la escena</button>
-        </li>
-      </ul>
-    </section>
-
-    <section class="band" id="valor" aria-labelledby="valor-title">
-      <div class="section">
-        <div class="section__head">
-          <h2 id="valor-title">Diseñar desde el muro</h2>
+      <form class="calc__form" data-calc novalidate>
+        <label class="field field--wide">
+          <span>Producto</span>
+          <select name="producto" data-calc-product></select>
+        </label>
+        <label class="field field--wide" data-calc-color-wrap>
+          <span>Color</span>
+          <select name="color" data-calc-color></select>
+        </label>
+        <label class="field">
+          <span data-calc-w-label>Ancho del muro</span>
+          <div class="unit"><input name="ancho" type="number" inputmode="decimal" min="0" step="0.01" value="3.5"><i>m</i></div>
+        </label>
+        <label class="field">
+          <span data-calc-h-label>Alto del muro</span>
+          <div class="unit"><input name="alto" type="number" inputmode="decimal" min="0" step="0.01" value="2.6"><i>m</i></div>
+        </label>
+        <label class="field" data-calc-gap-wrap hidden>
+          <span>Separación entre vigas</span>
+          <div class="unit"><input name="separacion" type="number" inputmode="decimal" min="0" step="0.5" value="7.5"><i>cm</i></div>
+        </label>
+        <label class="field" data-calc-open-wrap>
+          <span>Descontar puertas o ventanas</span>
+          <div class="unit"><input name="huecos" type="number" inputmode="decimal" min="0" step="0.01" value="0"><i>m²</i></div>
+        </label>
+        <div class="field field--wide">
+          <span>Merma</span>
+          <div class="seg" role="radiogroup" aria-label="Merma" data-calc-merma>
+            <button type="button" role="radio" aria-checked="false" data-merma="0.05">5 %</button>
+            <button type="button" role="radio" aria-checked="true" data-merma="0.10">10 %</button>
+            <button type="button" role="radio" aria-checked="false" data-merma="0.15">15 %</button>
+          </div>
         </div>
-        <ol class="values">
-          <li>
-            <h3>Una superficie con presencia.</h3>
-            <p>Un muro bien resuelto ordena el espacio. Por eso el acabado va al centro del diseño.</p>
-          </li>
-          <li>
-            <h3>Seis tonos, muchas atmósferas.</h3>
-            <p>De lo claro a lo profundo, cada acabado cambia el carácter de la habitación.</p>
-          </li>
-          <li>
-            <h3>La luz completa el diseño.</h3>
-            <p>La luz de día, la de noche y la de acento leen la superficie de forma distinta. Pruébalas antes de decidir.</p>
-          </li>
-        </ol>
-      </div>
+        <output class="calc__out" data-calc-out aria-live="polite"></output>
+      </form>
     </section>
 
-    <section class="section" id="ideas" aria-labelledby="ideas-title">
-      <div class="section__head">
-        <h2 id="ideas-title">Ideas para tu proyecto</h2>
-      </div>
-      <ul class="ideas">
-        <li class="idea">
-          <div class="mini" data-idea-scene="estancia" aria-hidden="true"><span class="mini__shade"></span><span class="mini__glow"></span><span class="mini__accent"></span></div>
-          <h3>Estancia</h3>
-          <p>Natural con luz de día, para un espacio abierto y luminoso.</p>
-          <p class="idea__meta" data-idea-meta="estancia"></p>
-          <button class="text-button" type="button" data-idea="estancia" aria-label="Ver la idea Estancia en la escena">Ver en la escena</button>
-        </li>
-        <li class="idea">
-          <div class="mini" data-idea-scene="recamara" aria-hidden="true"><span class="mini__shade"></span><span class="mini__glow"></span><span class="mini__accent"></span></div>
-          <h3>Recámara</h3>
-          <p>Nogal de noche con luz de acento, para un ambiente cálido.</p>
-          <p class="idea__meta" data-idea-meta="recamara"></p>
-          <button class="text-button" type="button" data-idea="recamara" aria-label="Ver la idea Recámara en la escena">Ver en la escena</button>
-        </li>
-        <li class="idea">
-          <div class="mini" data-idea-scene="recepcion" aria-hidden="true"><span class="mini__shade"></span><span class="mini__glow"></span><span class="mini__accent"></span></div>
-          <h3>Recepción</h3>
-          <p>Negro con luz de acento, para un muro principal con carácter.</p>
-          <p class="idea__meta" data-idea-meta="recepcion"></p>
-          <button class="text-button" type="button" data-idea="recepcion" aria-label="Ver la idea Recepción en la escena">Ver en la escena</button>
-        </li>
-        <li class="idea">
-          <div class="mini" data-idea-scene="estudio" aria-hidden="true"><span class="mini__shade"></span><span class="mini__glow"></span><span class="mini__accent"></span></div>
-          <h3>Estudio</h3>
-          <p>Gris con luz de día, para un fondo neutro que no distrae.</p>
-          <p class="idea__meta" data-idea-meta="estudio"></p>
-          <button class="text-button" type="button" data-idea="estudio" aria-label="Ver la idea Estudio en la escena">Ver en la escena</button>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Sin canal de contacto confirmado: no hay formulario ni envío (ADR-0003) -->
-    <section class="cta" id="contacto" aria-labelledby="contacto-title">
-      <div class="section cta__inner">
-        <h2 id="contacto-title">Lleva el muro a tu proyecto.</h2>
-        <div class="summary">
-          <span class="summary__swatch" id="cta-swatch" aria-hidden="true"></span>
-          <p>Tu selección: <strong id="cta-finish">Nogal</strong> · <span id="cta-mode">De día</span> · <span id="cta-accent">Sin acento</span></p>
+    <!-- INSPIRACIÓN (galería horizontal) -->
+    <section class="gallery" id="inspiracion" aria-labelledby="galeria-t">
+      <div class="gallery__pin" data-gallery>
+        <div class="gallery__head">
+          <p class="eyebrow">Inspiración</p>
+          <h2 id="galeria-t">Espacios que <em>se quedan</em> en la memoria.</h2>
+          <p class="gallery__hint">Desliza <span aria-hidden="true">→</span></p>
         </div>
-        <p class="pending" id="cta-pending">Canal de contacto pendiente de confirmar.</p>
+        <div class="gallery__track" data-gallery-track></div>
+      </div>
+    </section>
+
+    <!-- ACCESORIOS -->
+    <section class="acc" id="accesorios" aria-labelledby="acc-t">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Accesorios</p>
+        <h2 id="acc-t" data-split>La instalación, <em>completa.</em></h2>
+        <p class="section-head__lead" data-reveal>Clips y soportes para lambrines, vigas y deck. Agrégalos a tu cotización con la cantidad que necesites.</p>
+      </div>
+      <div class="acc__grid" data-acc></div>
+    </section>
+
+    <!-- CÓMO COTIZAR -->
+    <section class="steps" aria-labelledby="pasos-t">
+      <h2 id="pasos-t" class="visually-hidden">Cómo cotizar</h2>
+      <ol>
+        <li data-reveal><b>01</b><h3>Elige</h3><p>Producto y color en el catálogo o en el visualizador.</p></li>
+        <li data-reveal><b>02</b><h3>Calcula</h3><p>Piezas y cajas con la calculadora, o escribe tu cantidad.</p></li>
+        <li data-reveal><b>03</b><h3>Cotiza</h3><p>Envía tu lista por WhatsApp y un asesor confirma precio y disponibilidad.</p></li>
+      </ol>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="cta" id="contacto" aria-labelledby="cta-t">
+      <div class="cta__bg" data-parallax="0.18">
+        <img src="assets/escenas/g-recepcion-1600.webp" srcset="assets/escenas/g-recepcion-800.webp 800w, assets/escenas/g-recepcion-1600.webp 1600w" sizes="100vw" alt="" loading="lazy">
+      </div>
+      <div class="cta__content">
+        <p class="eyebrow" data-reveal>Tu proyecto</p>
+        <h2 id="cta-t" data-split>Hagamos que ese muro <em>hable.</em></h2>
+        <p data-reveal>Arma tu lista con productos, colores y cantidades, y envíala en un solo mensaje.</p>
+        <div class="cta__actions" data-reveal>
+          <button type="button" class="btn btn--light" data-open-cart>Ver mi cotización</button>
+          <a class="btn btn--wa" data-wa-direct href="#contacto">Escribir por WhatsApp</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="section site-footer__inner">
-      <p class="site-footer__brand">Lambrin · Acabados arquitectónicos para muros.</p>
-      <p>Las escenas son representaciones conceptuales: el color y la textura son simulados y pueden diferir del producto.</p>
-      <p>Esta página no incluye precios ni especificaciones; cualquier dato comercial debe validarse con el catálogo.</p>
-    </div>
+  <footer class="footer">
+    <div class="footer__brand">LAMBRIN</div>
+    <p class="footer__claim">Materiales de importación para decoración de interior y exterior.</p>
+    <ul class="footer__legal">
+      <li data-leyenda></li>
+      <li>Las escenas son imágenes ilustrativas del tipo de acabado y no corresponden al producto exacto. El visualizador es una simulación: el color real puede variar. Solicita una muestra antes de comprar.</li>
+      <li>El cálculo de piezas es una estimación con merma; confirma medidas con un asesor.</li>
+    </ul>
+    <details class="footer__credits">
+      <summary>Créditos de fotografía y tipografía</summary>
+      <p>Fotos de <a href="https://unsplash.com" rel="noopener" target="_blank">Unsplash</a> bajo la Licencia Unsplash: <span data-credits></span>. Tipografías Fraunces y Manrope, SIL Open Font License 1.1.</p>
+    </details>
+    <p class="footer__copy">© <span data-year></span> Lambrin</p>
   </footer>
 
-  <p class="sr-only" id="announcer" aria-live="polite"></p>
+  <!-- Botón flotante -->
+  <div class="fab">
+    <button type="button" class="fab__cart" data-open-cart aria-label="Abrir lista de cotización"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><b class="cart-count" data-cart-count>0</b></button>
+    <a class="fab__wa" data-wa-direct href="#contacto" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4Z"/></svg></a>
+  </div>
+
+  <!-- Ficha de producto -->
+  <div class="sheet" data-sheet hidden>
+    <div class="sheet__backdrop" data-close-sheet></div>
+    <article class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1">
+      <button type="button" class="sheet__close" data-close-sheet aria-label="Cerrar ficha">×</button>
+      <div class="sheet__media">
+        <img data-sheet-img alt="">
+        <span class="sheet__note">Imagen ilustrativa</span>
+      </div>
+      <div class="sheet__body">
+        <p class="eyebrow" data-sheet-line></p>
+        <h2 id="sheet-title" data-sheet-title></h2>
+        <p class="sheet__desc" data-sheet-desc></p>
+        <div class="sheet__swatch">
+          <div class="lens" data-lens><img data-lens-img alt=""><span class="lens__glass" aria-hidden="true"></span></div>
+          <div>
+            <p class="sheet__color">Color: <b data-sheet-color></b> <em data-sheet-stock></em></p>
+            <div class="swatches swatches--lg" role="radiogroup" aria-label="Color" data-sheet-swatches></div>
+          </div>
+        </div>
+        <dl class="specs" data-sheet-specs></dl>
+        <div class="prices" data-sheet-prices></div>
+        <div class="buy">
+          <div class="buy__mode seg" role="radiogroup" aria-label="Unidad" data-sheet-unit></div>
+          <div class="stepper"><button type="button" data-step="-1" aria-label="Menos">−</button><input type="number" min="1" value="1" inputmode="numeric" aria-label="Cantidad" data-sheet-qty><button type="button" data-step="1" aria-label="Más">+</button></div>
+          <p class="buy__total" data-sheet-total></p>
+        </div>
+        <div class="sheet__actions">
+          <button type="button" class="btn btn--dark" data-sheet-add>Agregar a cotización</button>
+          <a class="btn btn--wa" data-sheet-wa href="#contacto">Cotizar por WhatsApp</a>
+        </div>
+        <div class="sheet__links">
+          <a class="link-arrow" href="#visualizador" data-sheet-viz>Pruébalo en el muro</a>
+          <a class="link-arrow" href="#calculadora" data-sheet-calc>Calcular piezas</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Lista de cotización -->
+  <aside class="cart" data-cart hidden aria-labelledby="cart-t">
+    <div class="cart__backdrop" data-close-cart></div>
+    <div class="cart__panel" role="dialog" aria-modal="true" aria-labelledby="cart-t" tabindex="-1">
+      <header class="cart__head">
+        <h2 id="cart-t">Tu cotización</h2>
+        <button type="button" class="sheet__close" data-close-cart aria-label="Cerrar cotización">×</button>
+      </header>
+      <ul class="cart__list" data-cart-list></ul>
+      <p class="cart__empty" data-cart-empty>Aún no agregas productos. Explora el catálogo y toca «Agregar a cotización».</p>
+      <footer class="cart__foot">
+        <p class="cart__total"><span>Total estimado</span><b data-cart-total>$0</b></p>
+        <p class="cart__fine" data-leyenda></p>
+        <a class="btn btn--wa btn--block" data-cart-send href="#contacto">Enviar por WhatsApp</a>
+        <div class="cart__row">
+          <button type="button" class="link-btn" data-cart-copy>Copiar pedido</button>
+          <button type="button" class="link-btn" data-cart-clear>Vaciar lista</button>
+        </div>
+      </footer>
+    </div>
+  </aside>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>

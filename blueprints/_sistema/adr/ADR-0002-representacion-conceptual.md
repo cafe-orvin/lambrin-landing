@@ -1,5 +1,5 @@
 # ADR-0002: Representación conceptual de acabados con capas de luz y texturas generadas
-- Estado: Aceptado
+- Estado: Sustituido por ADR-0005 (2026-10-28)
 - Fecha: 2026-10-28 · Aprobó: usuario (cafe@orvin.lat), en el chat · Compuerta: PG2
 
 ## Contexto
