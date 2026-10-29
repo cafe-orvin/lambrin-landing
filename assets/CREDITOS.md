@@ -38,3 +38,6 @@ Recortadas del catálogo de Lambrin (`lambrin.pdf`, 8 páginas). La muestra de D
 
 ## Fuentes (`fuentes/`)
 - Fraunces (The Fraunces Project Authors) y Manrope (The Manrope Project Authors), SIL Open Font License 1.1. Archivos woff2 del paquete Fontsource 5.1.0; licencias en `LICENSE-Fraunces.txt` y `LICENSE-Manrope.txt`.
+
+## Fotos por color (`escenas/colores/`)
+Variantes de las escenas anteriores generadas con IA (Nano Banana 2.1, vía Higgsfield, 2026-10-29): la foto de Unsplash de cada producto más la muestra del catálogo, cambiando solo el revestimiento (ADR-0009). Son **imágenes ilustrativas generadas con IA** y pueden diferir del producto real. La Licencia Unsplash permite modificar las fotos.

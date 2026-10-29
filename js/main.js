@@ -20,6 +20,10 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function scene(e, w) { return "assets/escenas/" + e + "-" + w + ".webp"; }
   function srcset(e) { return scene(e, 800) + " 800w, " + scene(e, 1600) + " 1600w"; }
+  // Fotos por color (ADR-0009): misma escena con el acabado de ese color, generada con IA.
+  function colorScene(f, w) { return "assets/escenas/colores/" + f + "-" + w + ".jpg"; }
+  function colorSrcset(f) { return colorScene(f, 800) + " 800w, " + colorScene(f, 1600) + " 1600w"; }
+  function hasColorPhotos(p) { return p.colores.some(function (c) { return c.foto; }); }
   function swatchUrl(m) { return "assets/muestras/" + m + ".jpg"; }
   // soloTono: el PDF no trae una muestra usable; se pinta solo el tono.
   function swatchBg(c) { return (c.soloTono ? "" : "background-image:url(" + swatchUrl(c.muestra) + ");") + "background-color:" + c.tono; }
@@ -201,10 +205,11 @@
     var p = product(id); if (!p) return;
     S.p = p; S.c = color(p, colorId);
     S.unit = p.precio.soloCaja ? "caja" : "pieza";
-    S.view = "foto";
-    $("[data-sheet-view]").hidden = !p.visual;
-    var img = $("[data-sheet-img]");
+    S.view = colorId && S.c.foto ? "color" : "foto";
+    $("[data-sheet-view]").hidden = !p.visual || hasColorPhotos(p);
+    var img = $("[data-sheet-img]"), alt = $("[data-sheet-img2]");
     img.src = scene(p.escena, 1600); img.srcset = srcset(p.escena); img.sizes = "(max-width: 900px) 100vw, 50vw"; img.alt = p.escenaAlt;
+    alt.classList.remove("is-on"); alt.removeAttribute("data-f"); alt.removeAttribute("src"); alt.removeAttribute("srcset");
     $("[data-sheet-line]").textContent = lineLabel(p) + " · " + p.serie;
     $("[data-sheet-title]").textContent = fullName(p);
     $("[data-sheet-desc]").textContent = p.descripcion;
@@ -250,7 +255,7 @@
   $("[data-sheet-swatches]").addEventListener("click", function (e) {
     var b = e.target.closest(".swatch"); if (!b) return;
     S.c = color(S.p, b.dataset.color);
-    if (S.p.visual) S.view = "muro";
+    if (S.c.foto) S.view = "color"; else if (S.p.visual) S.view = "muro";
     updateSheet();
   });
   $("[data-sheet-view]").addEventListener("click", function (e) {
@@ -400,10 +405,23 @@
   sheetRoom.innerHTML = room.innerHTML.replace(/id="(fl|sh|led)"/g, 'id="$1-ficha"').replace(/url\(#(fl|sh|led)\)/g, "url(#$1-ficha)");
   $$("[data-compare], .room__badge, .room__torch, .room__wall--b", sheetRoom).forEach(function (el) { el.remove(); });
   var sheetWall = $(".room__wall", sheetRoom); sheetWall.removeAttribute("data-wall");
+  function showColorPhoto(c) {
+    var img = $("[data-sheet-img]"), alt = $("[data-sheet-img2]");
+    if (alt.dataset.f === c.foto) return;
+    // La foto anterior pasa al fondo y la nueva se funde encima al cargar.
+    if (alt.dataset.f) { img.srcset = alt.srcset; img.src = alt.src; img.alt = alt.alt; }
+    alt.classList.remove("is-on");
+    alt.dataset.f = c.foto;
+    alt.onload = function () { if (alt.dataset.f === c.foto) alt.classList.add("is-on"); };
+    alt.alt = S.p.escenaAlt + ", con " + fullName(S.p) + " color " + c.nombre + " (imagen generada con IA)";
+    alt.sizes = "(max-width: 900px) 100vw, 50vw"; alt.srcset = colorSrcset(c.foto); alt.src = colorScene(c.foto, 1600);
+  }
   function renderSheetView() {
-    var muro = S.view === "muro" && !!S.p.visual;
+    var foto = S.view === "color" && !!S.c.foto;
+    var muro = !foto && S.view === "muro" && !!S.p.visual;
+    if (foto) showColorPhoto(S.c);
     sheetMedia.classList.toggle("is-muro", muro);
-    $("[data-sheet-note]").textContent = muro ? "Simulación · el color real puede variar" : "Imagen ilustrativa";
+    $("[data-sheet-note]").textContent = foto ? "Imagen ilustrativa generada con IA" : muro ? "Simulación · el color real puede variar" : "Imagen ilustrativa";
     $$("[data-view]", sheet).forEach(function (b) { b.setAttribute("aria-checked", b.dataset.view === (muro ? "muro" : "foto")); });
     if (muro) paintWall(sheetWall, S.p, S.c, sheetRoom);
   }
