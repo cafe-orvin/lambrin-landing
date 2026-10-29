@@ -9,7 +9,7 @@ Rama de trabajo propuesta: `arq/lambrin-v2`, en un worktree nuevo desde `main` (
 ## PG0 — Admisión
 
 ### 1. Objetivo de negocio
-Vender el catálogo completo de Lambrin (12 productos y 5 accesorios) con una landing que luzca los acabados en escenas reales, se mueva, sea interactiva y lleve al visitante a cotizar por WhatsApp. Debe quedar lista para subirse a un dominio.
+Vender el catálogo completo de Lambrin (13 productos y 5 accesorios; corregido de «12» al validar T03) con una landing que luzca los acabados en escenas reales, se mueva, sea interactiva y lleve al visitante a cotizar por WhatsApp. Debe quedar lista para subirse a un dominio.
 
 ### 2. Usuarios
 - Visitante final (dueño de casa, arquitecto, diseñador o contratista) que busca acabados para muros, techos y pisos.
@@ -52,7 +52,7 @@ Ninguno. La lista de cotización se guarda solo en el navegador del visitante (`
 | ID | Requisito |
 |---|---|
 | RF-01 | Portada a pantalla completa con escenas que cambian solas, titular animado y llamada a cotizar. |
-| RF-02 | Catálogo con filtros **Interior · Exterior · Accesorios** y las 12 fichas de producto. |
+| RF-02 | Catálogo con filtros **Interior · Exterior · Accesorios** y las 13 fichas de producto. |
 | RF-03 | Cada ficha: escena, medidas (largo, ancho, espesor), colores con muestra real del PDF, precio por pieza y por caja, costo por pieza dentro de la caja y ahorro. |
 | RF-04 | Al elegir un color, la muestra se amplía con lupa al pasar el cursor o al tocar. |
 | RF-05 | **Visualizador «Pruébalo en tu muro»:** un muro dibujado con la textura de la muestra elegida, con luz de día, noche y acento. Lleva la etiqueta «Simulación». |
@@ -160,7 +160,7 @@ Sin backend y sin datos personales. Enlaces externos con `rel="noopener"`. El `.
 |---|---|---|---|
 | T01 | Worktree `arq/lambrin-v2` desde `main`; copiar esta propuesta a `blueprints/`; ADR-0005 a 0008 como Aceptados; marcar ADR-0002 y 0003 como sustituidos (por nota, sin editar su contenido) | `git branch --show-current` = `arq/lambrin-v2`; existen los 4 ADR | `lambrin2-t01` |
 | T02 | Recursos: buscar y descargar ~15 fotos (Unsplash/Pexels), convertirlas a WebP en 3 tamaños; recortar ~40 muestras del PDF; descargar 2 fuentes OFL; `CREDITOS.md` | Cada foto tiene autor, URL y licencia; peso total de escenas < 12 MB | `lambrin2-t02` |
-| T03 | `catalogo.js` con los 12 productos y 5 accesorios | Comparación línea por línea contra el anexo de PG1 | `lambrin2-t03` |
+| T03 | `catalogo.js` con los 13 productos y 5 accesorios | Comparación línea por línea contra el anexo de PG1 | `lambrin2-t03` |
 | T04 | `index.html` + SEO (meta, Open Graph, favicon, robots, sitemap); se retiran los archivos de la v1 en `site/` (quedan en `lambrin-v1`) | Validación de estructura; sin enlaces rotos | `lambrin2-t04` |
 | T05 | Estilos y movimiento | `prefers-reduced-motion` presente; solo `transform`/`opacity` en animaciones | `lambrin2-t05` |
 | T06 | Interacción: filtros, fichas, lupa, visualizador, calculadora, lista de cotización y WhatsApp | Casos de la calculadora comprobados a mano (3 ejemplos documentados) | `lambrin2-t06` |
