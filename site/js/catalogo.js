@@ -6,7 +6,7 @@
 window.LAMBRIN = {
   // ADR-0007: solo dígitos con código de país, p. ej. "5218112345678". Vacío = «Contacto próximamente».
   CONTACT: {
-    whatsapp: "",
+    whatsapp: "528681259055", // provisional para pruebas (2026-10-29)
     saludo: "Hola, Lambrin. Me interesa cotizar lo siguiente:"
   },
 
