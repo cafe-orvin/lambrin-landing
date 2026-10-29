@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Dirección provisional de GitHub Pages; cámbiala por el dominio final (ver PUBLICAR.md)
+Sitemap: https://cafe-orvin.github.io/lambrin-landing/sitemap.xml
