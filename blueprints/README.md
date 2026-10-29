@@ -7,4 +7,4 @@
 | `_sistema/00-contexto.md` … `06-inventario-funcional.md`, `anexo-contenido.md` | F2 Arquitectura | PG2 aprobado 2026-10-28 |
 | `_sistema/adr/ADR-0001` · `ADR-0002` · `ADR-0003` | F2 Arquitectura | Aceptados |
 | `_sistema/adr/ADR-0004` | F3 Planificación | Aceptado |
-| `lambrin-landing/plan.md` | F3 Planificación → F4 | PG3 aprobado 2026-10-28; construcción en curso |
+| `lambrin-landing/plan.md` · `verificacion.md` | F4 Construcción | Construida y verificada; pendiente PG4 |

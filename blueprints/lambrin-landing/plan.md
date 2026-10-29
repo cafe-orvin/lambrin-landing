@@ -120,3 +120,8 @@ Archivo principal: `~/Documents/Orvin/Lambrin/lambrin-landing/site/index.html` (
 - [x] Workspace: no se crean CLAUDE.md, AGENTS.md ni `.claude/`.
 - [x] Sin plugin: lista revisada y firmada en ADR-0004.
 - [x] 0 pendientes de aclarar · prueba de humo marcada «not smoke-tested» salvo autorización de T07.
+
+## Resultado de F4 — 2026-10-28
+- T01–T06 construidas y verificadas; T07 (prueba de humo) autorizada y ejecutada antes de T06. Detalle en `verificacion.md`.
+- Entrega: `~/Documents/Orvin/Lambrin/lambrin-landing/site/index.html` en la rama `arq/lambrin-landing`.
+- Pendiente: PG4 de esta épica.
