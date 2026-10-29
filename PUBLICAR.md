@@ -51,3 +51,6 @@ La propagación tarda de minutos a 48 horas.
 - Precios en MXN, sujetos a cambio sin previo aviso.
 - Las escenas son imágenes ilustrativas (fotos de Unsplash con licencia de uso comercial; créditos en el pie y en `assets/CREDITOS.md`).
 - El visualizador es una simulación y la calculadora es una estimación.
+
+## Demo para el prospecto (`/demo/`)
+La copia con el botón «Cotiza tu landing page» se arma con `sh demo/armar.sh <carpeta>` y se publica en la carpeta `demo/` de la rama `gh-pages` (ADR-0010). Los precios se cambian en `COTIZACION`, dentro de `demo/demo.js`. Cuando Lambrin decida, se borra esa carpeta de `gh-pages`.
