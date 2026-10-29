@@ -24,7 +24,7 @@ Todo el contenido comercial vive en `site/js/catalogo.js` (ADR-0006):
 ## Datos pendientes
 | Dato | Situación |
 |---|---|
-| Número de WhatsApp | Pendiente; se llena en `catalogo.js`. |
-| Dominio | Pendiente; se llena en `robots.txt`, `sitemap.xml` y `og:image`. |
+| Número de WhatsApp | Provisional para pruebas (`528681259055`); el definitivo se pone en `catalogo.js`. |
+| Dominio | Provisional: https://cafe-orvin.github.io/lambrin-landing/ (GitHub Pages, rama `gh-pages`). Con dominio propio se cambia en `robots.txt`, `sitemap.xml`, `og:url` y `og:image`. |
 | Fotos propias de Lambrin | No disponibles; se usan imágenes ilustrativas. |
 | IVA | No se menciona (decisión del usuario). |
