@@ -24,4 +24,4 @@ Las rutas y SHA-256 de las demos están en `../00-inicio.md` §9.
 ## Entorno de prueba (fuera del repositorio)
 | Elemento | Ruta | Nota |
 |---|---|---|
-| Entrada `lambrin-landing` del servidor de vista previa | `~/Documents/Orvin/SC360/.claude/launch.json` | Autorizada en el chat para T07. Sirve una copia de `site/` desde la carpeta temporal de la sesión, porque macOS no permite al servidor leer `~/Documents`. Respaldo: `SC360/backups/launch.json.pre-lambrin-2026-10-28.bak`. |
+| Entrada `lambrin-landing` del servidor de vista previa (retirada en PG5) | `~/Documents/Orvin/SC360/.claude/launch.json` | Autorizada en el chat para T07 y retirada en PG5 restaurando el respaldo (SHA-256 `769baf5e…6921fb`). Sirve una copia de `site/` desde la carpeta temporal de la sesión, porque macOS no permite al servidor leer `~/Documents`. Respaldo: `SC360/backups/launch.json.pre-lambrin-2026-10-28.bak`. |
