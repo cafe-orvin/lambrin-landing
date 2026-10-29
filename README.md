@@ -16,7 +16,7 @@ Todo el contenido comercial vive en `site/js/catalogo.js` (ADR-0006):
 
 ## Estructura
 - `site/index.html`, `site/css/styles.css`, `site/js/main.js`: HTML, CSS y JavaScript nativos, sin dependencias ni compilación (ADR-0001).
-- `site/assets/escenas/`: fotos de Unsplash en WebP (ADR-0005; créditos en `assets/CREDITOS.md`).
+- `site/assets/escenas/`: fotos de Unsplash en WebP (ADR-0005; créditos en `assets/CREDITOS.md`). En `escenas/colores/`, una foto por color generada con IA (ADR-0009).
 - `site/assets/muestras/`: muestras de color recortadas del catálogo.
 - `site/assets/fuentes/`: Fraunces y Manrope, licencia OFL (ADR-0008).
 - `blueprints/`: propuesta, ADR, plan y verificación.

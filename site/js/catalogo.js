@@ -26,13 +26,13 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 15, espesor: 2.3 },
       precio: { pieza: 185, caja: { precio: 2500, piezas: 14 } },
       colores: [
-        { id: "nogal", nombre: "Nogal", muestra: "int15-nogal", tono: "#92664d" },
-        { id: "encino", nombre: "Encino", muestra: "int15-encino", tono: "#6b4e3a" },
-        { id: "natural", nombre: "Natural", muestra: "int15-natural", tono: "#bda793" },
-        { id: "negro", nombre: "Negro", muestra: "int15-negro", tono: "#363636" },
-        { id: "gris", nombre: "Gris", muestra: "int15-gris", tono: "#54514f" },
-        { id: "tapiz", nombre: "Tapiz", muestra: "int15-tapiz", tono: "#b9aea0" },
-        { id: "lino", nombre: "Lino", muestra: "int15-lino", tono: "#c1bbab" }
+        { id: "nogal", nombre: "Nogal", muestra: "int15-nogal", foto: "interior-15-nogal", tono: "#92664d" },
+        { id: "encino", nombre: "Encino", muestra: "int15-encino", foto: "interior-15-encino", tono: "#6b4e3a" },
+        { id: "natural", nombre: "Natural", muestra: "int15-natural", foto: "interior-15-natural", tono: "#bda793" },
+        { id: "negro", nombre: "Negro", muestra: "int15-negro", foto: "interior-15-negro", tono: "#363636" },
+        { id: "gris", nombre: "Gris", muestra: "int15-gris", foto: "interior-15-gris", tono: "#54514f" },
+        { id: "tapiz", nombre: "Tapiz", muestra: "int15-tapiz", foto: "interior-15-tapiz", tono: "#b9aea0" },
+        { id: "lino", nombre: "Lino", muestra: "int15-lino", foto: "interior-15-lino", tono: "#c1bbab" }
       ],
       visual: { modo: "listones", muestraCm: 15 },
       calc: "superficie"
@@ -49,11 +49,11 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 16, espesor: 2.4 },
       precio: { pieza: 185, caja: { precio: 2500, piezas: 14 } },
       colores: [
-        { id: "golden", nombre: "Golden", muestra: "int16-golden", tono: "#a57159" },
-        { id: "walnut", nombre: "Walnut", muestra: "int16-walnut", tono: "#584840" },
-        { id: "light-walnut", nombre: "Light Walnut", muestra: "int16-light-walnut", tono: "#5e392d" },
-        { id: "oak", nombre: "Oak", muestra: "int16-oak", tono: "#745c52" },
-        { id: "beige", nombre: "Beige", muestra: "int16-beige", tono: "#c3b7ab" }
+        { id: "golden", nombre: "Golden", muestra: "int16-golden", foto: "interior-16-golden", tono: "#a57159" },
+        { id: "walnut", nombre: "Walnut", muestra: "int16-walnut", foto: "interior-16-walnut", tono: "#584840" },
+        { id: "light-walnut", nombre: "Light Walnut", muestra: "int16-light-walnut", foto: "interior-16-light-walnut", tono: "#5e392d" },
+        { id: "oak", nombre: "Oak", muestra: "int16-oak", foto: "interior-16-oak", tono: "#745c52" },
+        { id: "beige", nombre: "Beige", muestra: "int16-beige", foto: "interior-16-beige", tono: "#c3b7ab" }
       ],
       visual: { modo: "listones", muestraCm: 16 },
       calc: "superficie"
@@ -90,10 +90,10 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 122, espesor: 0.3 },
       precio: { pieza: 990, caja: null },
       colores: [
-        { id: "gray-marble", nombre: "Gray Marble", muestra: "marmol-gray", tono: "#2e2c27" },
-        { id: "borghini", nombre: "Borghini", muestra: "marmol-borghini", tono: "#a9a7a2" },
-        { id: "black-marble", nombre: "Black Marble", muestra: "marmol-black", tono: "#0c0c0c" },
-        { id: "white-marble", nombre: "White Marble", muestra: "marmol-white", tono: "#c5c6c6" }
+        { id: "gray-marble", nombre: "Gray Marble", muestra: "marmol-gray", foto: "marmol-gray-marble", tono: "#2e2c27" },
+        { id: "borghini", nombre: "Borghini", muestra: "marmol-borghini", foto: "marmol-borghini", tono: "#a9a7a2" },
+        { id: "black-marble", nombre: "Black Marble", muestra: "marmol-black", foto: "marmol-black-marble", tono: "#0c0c0c" },
+        { id: "white-marble", nombre: "White Marble", muestra: "marmol-white", foto: "marmol-white-marble", tono: "#c5c6c6" }
       ],
       visual: { modo: "lamina", muestraCm: 122 },
       calc: "superficie"
@@ -110,9 +110,9 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 7.5, espesor: 5 },
       precio: { pieza: 600, caja: null },
       colores: [
-        { id: "light-walnut", nombre: "Light Walnut", muestra: "vigaint-light-walnut", tono: "#7a3f2c" },
-        { id: "walnut", nombre: "Walnut", muestra: "vigaint-walnut", tono: "#4a3a33" },
-        { id: "oak", nombre: "Oak", muestra: "vigaint-oak", tono: "#c9a27e" }
+        { id: "light-walnut", nombre: "Light Walnut", muestra: "vigaint-light-walnut", foto: "viga-interior-light-walnut", tono: "#7a3f2c" },
+        { id: "walnut", nombre: "Walnut", muestra: "vigaint-walnut", foto: "viga-interior-walnut", tono: "#4a3a33" },
+        { id: "oak", nombre: "Oak", muestra: "vigaint-oak", foto: "viga-interior-oak", tono: "#c9a27e" }
       ],
       visual: { modo: "celosia", muestraCm: 7.5 },
       calc: "viga"
@@ -129,8 +129,8 @@ window.LAMBRIN = {
       medida: { largo: 56.5, ancho: 65, espesor: 1.8 },
       precio: { pieza: 850, caja: { precio: 4000, piezas: 5 } },
       colores: [
-        { id: "oak", nombre: "Oak", muestra: "acus-oak", tono: "#ccb9a7" },
-        { id: "light-walnut", nombre: "Light Walnut", muestra: "acus-light-walnut", tono: "#896959" }
+        { id: "oak", nombre: "Oak", muestra: "acus-oak", foto: "acustico-oak", tono: "#ccb9a7" },
+        { id: "light-walnut", nombre: "Light Walnut", muestra: "acus-light-walnut", foto: "acustico-light-walnut", tono: "#896959" }
       ],
       visual: { modo: "mosaico", muestraCm: 65, altoCm: 56.5 },
       calc: "superficie"
@@ -147,10 +147,10 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 22, espesor: 2.5 },
       precio: { pieza: 700, caja: { precio: 3250, piezas: 5 } },
       colores: [
-        { id: "teka", nombre: "Teka", muestra: "ext-teka", tono: "#7b4b37" },
-        { id: "walnut", nombre: "Walnut", muestra: "ext-walnut", tono: "#5d3c36" },
-        { id: "light-gray", nombre: "Light Gray", muestra: "ext-light-gray", tono: "#595b66" },
-        { id: "black", nombre: "Black", muestra: "ext-black", tono: "#28282a" }
+        { id: "teka", nombre: "Teka", muestra: "ext-teka", foto: "exterior-teka", tono: "#7b4b37" },
+        { id: "walnut", nombre: "Walnut", muestra: "ext-walnut", foto: "exterior-walnut", tono: "#5d3c36" },
+        { id: "light-gray", nombre: "Light Gray", muestra: "ext-light-gray", foto: "exterior-light-gray", tono: "#595b66" },
+        { id: "black", nombre: "Black", muestra: "ext-black", foto: "exterior-black", tono: "#28282a" }
       ],
       visual: { modo: "listones", muestraCm: 22 },
       calc: "superficie"
@@ -167,9 +167,9 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 10, espesor: 5 },
       precio: { pieza: 650, caja: null },
       colores: [
-        { id: "teka", nombre: "Teka", muestra: "vigaext-teka", tono: "#a8714a" },
-        { id: "light-gray", nombre: "Light Gray", muestra: "vigaext-light-gray", tono: "#6e7178" },
-        { id: "walnut", nombre: "Walnut", muestra: "vigaext-walnut", tono: "#4a3b35" }
+        { id: "teka", nombre: "Teka", muestra: "vigaext-teka", foto: "viga-exterior-teka", tono: "#a8714a" },
+        { id: "light-gray", nombre: "Light Gray", muestra: "vigaext-light-gray", foto: "viga-exterior-light-gray", tono: "#6e7178" },
+        { id: "walnut", nombre: "Walnut", muestra: "vigaext-walnut", foto: "viga-exterior-walnut", tono: "#4a3b35" }
       ],
       visual: { modo: "celosia", muestraCm: 10 },
       calc: "viga"
@@ -186,8 +186,8 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 15, espesor: 2.1 },
       precio: { pieza: 420, caja: { precio: 3050, piezas: 8 } },
       colores: [
-        { id: "teka", nombre: "Teka", muestra: "techo-teka", tono: "#93512e" },
-        { id: "light-gray", nombre: "Light Gray", muestra: "techo-light-gray", tono: "#6f7178" }
+        { id: "teka", nombre: "Teka", muestra: "techo-teka", foto: "panel-techo-teka", tono: "#93512e" },
+        { id: "light-gray", nombre: "Light Gray", muestra: "techo-light-gray", foto: "panel-techo-light-gray", tono: "#6f7178" }
       ],
       visual: { modo: "listones", muestraCm: 15 },
       calc: "superficie"
@@ -204,9 +204,9 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 60, espesor: 0.9 },
       precio: { pieza: 650, caja: { precio: 3700, piezas: 6 } },
       colores: [
-        { id: "oak", nombre: "Oak", muestra: "muro-oak", tono: "#d5a38b" },
-        { id: "light-walnut", nombre: "Light Walnut", muestra: "muro-light-walnut", tono: "#a46248" },
-        { id: "walnut", nombre: "Walnut", muestra: "muro-walnut", tono: "#62423a" }
+        { id: "oak", nombre: "Oak", muestra: "muro-oak", foto: "panel-muro-oak", tono: "#d5a38b" },
+        { id: "light-walnut", nombre: "Light Walnut", muestra: "muro-light-walnut", foto: "panel-muro-light-walnut", tono: "#a46248" },
+        { id: "walnut", nombre: "Walnut", muestra: "muro-walnut", foto: "panel-muro-walnut", tono: "#62423a" }
       ],
       visual: { modo: "tablero", muestraCm: 60 },
       calc: "superficie"
@@ -223,8 +223,8 @@ window.LAMBRIN = {
       medida: { largo: 120, ancho: 60, espesor: 5 },
       precio: { pieza: 750, caja: null },
       colores: [
-        { id: "white", nombre: "White", muestra: "pu-white", tono: "#f3f1f0" },
-        { id: "gray", nombre: "Gray", muestra: "pu-gray", tono: "#4f4f4f" }
+        { id: "white", nombre: "White", muestra: "pu-white", foto: "piedra-pu-white", tono: "#f3f1f0" },
+        { id: "gray", nombre: "Gray", muestra: "pu-gray", foto: "piedra-pu-gray", tono: "#4f4f4f" }
       ],
       visual: { modo: "mosaico", muestraCm: 60, altoCm: 120 },
       calc: "superficie"
@@ -241,10 +241,10 @@ window.LAMBRIN = {
       medida: { largo: 120, ancho: 60, espesor: 0.09 },
       precio: { pieza: 650, caja: null },
       colores: [
-        { id: "rubik", nombre: "Rubik Cube Stone", muestra: "flex-rubik", tono: "#f7f6f5" },
-        { id: "new-line", nombre: "New Line Stone", muestra: "flex-new-line", tono: "#e4e1de" },
-        { id: "undersea", nombre: "Undersea Travertine", muestra: "flex-undersea", tono: "#e5e5e2" },
-        { id: "wave", nombre: "Wave Board", muestra: "flex-wave", tono: "#ebe9e8" }
+        { id: "rubik", nombre: "Rubik Cube Stone", muestra: "flex-rubik", foto: "piedras-flexibles-rubik", tono: "#f7f6f5" },
+        { id: "new-line", nombre: "New Line Stone", muestra: "flex-new-line", foto: "piedras-flexibles-new-line", tono: "#e4e1de" },
+        { id: "undersea", nombre: "Undersea Travertine", muestra: "flex-undersea", foto: "piedras-flexibles-undersea", tono: "#e5e5e2" },
+        { id: "wave", nombre: "Wave Board", muestra: "flex-wave", foto: "piedras-flexibles-wave", tono: "#ebe9e8" }
       ],
       visual: { modo: "mosaico", muestraCm: 60, altoCm: 120 },
       calc: "superficie"
@@ -261,7 +261,7 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 14, espesor: 2.5 },
       precio: { pieza: 380, caja: { precio: 1900, piezas: 5 }, soloCaja: true },
       colores: [
-        { id: "teka", nombre: "Teka", muestra: "deck-teka", tono: "#97674f", agotado: true }
+        { id: "teka", nombre: "Teka", muestra: "deck-teka", foto: "deck-teka", tono: "#97674f", agotado: true }
       ],
       visual: null,
       calc: "piso"
