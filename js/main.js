@@ -21,6 +21,8 @@
   function scene(e, w) { return "assets/escenas/" + e + "-" + w + ".webp"; }
   function srcset(e) { return scene(e, 800) + " 800w, " + scene(e, 1600) + " 1600w"; }
   function swatchUrl(m) { return "assets/muestras/" + m + ".jpg"; }
+  // soloTono: el PDF no trae una muestra usable; se pinta solo el tono.
+  function swatchBg(c) { return (c.soloTono ? "" : "background-image:url(" + swatchUrl(c.muestra) + ");") + "background-color:" + c.tono; }
   function product(id) { for (var i = 0; i < L.productos.length; i++) if (L.productos[i].id === id) return L.productos[i]; return null; }
   function color(p, id) { for (var i = 0; i < p.colores.length; i++) if (p.colores[i].id === id) return p.colores[i]; return p.colores[0]; }
   function fullName(p) {
@@ -70,7 +72,7 @@
     if (it.tipo === "accesorio") {
       var a = L.accesorios.filter(function (x) { return x.id === it.id; })[0];
       if (!a) return null;
-      return { nombre: a.nombre, detalle: "Accesorio", unidad: "pieza", precio: a.precio, img: swatchUrl(a.muestra), agotado: false };
+      return { nombre: a.nombre, detalle: "Accesorio", unidad: "pieza", precio: a.precio, bg: "background-image:url(" + swatchUrl(a.muestra) + ")", agotado: false };
     }
     var p = product(it.id); if (!p) return null;
     var c = color(p, it.color);
@@ -80,7 +82,7 @@
       detalle: c.nombre + (caja ? " · caja de " + p.precio.caja.piezas + " pz" : " · pieza"),
       unidad: caja ? "caja" : "pieza",
       precio: caja ? p.precio.caja.precio : p.precio.pieza,
-      img: swatchUrl(c.muestra),
+      bg: swatchBg(c),
       agotado: !!c.agotado
     };
   }
@@ -116,7 +118,7 @@
     var list = $("[data-cart-list]");
     list.innerHTML = cart.map(function (x, i) {
       var d = itemData(x);
-      return '<li class="cart__item"><i style="background-image:url(' + d.img + ')"></i><div><h3>' + esc(d.nombre) + "</h3><p>" + esc(d.detalle) + (d.agotado ? " · <strong>agotado</strong>" : "") + " · " + money(d.precio) + '</p><div class="stepper"><button type="button" data-cq="' + i + '" data-d="-1" aria-label="Menos">−</button><input type="number" min="0" value="' + x.qty + '" data-ci="' + i + '" aria-label="Cantidad"><button type="button" data-cq="' + i + '" data-d="1" aria-label="Más">+</button></div></div><div><b>' + money(d.precio * x.qty) + '</b><button type="button" class="rm" data-cr="' + i + '">Quitar</button></div></li>';
+      return '<li class="cart__item"><i style="' + d.bg + '"></i><div><h3>' + esc(d.nombre) + "</h3><p>" + esc(d.detalle) + (d.agotado ? " · <strong>agotado</strong>" : "") + " · " + money(d.precio) + '</p><div class="stepper"><button type="button" data-cq="' + i + '" data-d="-1" aria-label="Menos">−</button><input type="number" min="0" value="' + x.qty + '" data-ci="' + i + '" aria-label="Cantidad"><button type="button" data-cq="' + i + '" data-d="1" aria-label="Más">+</button></div></div><div><b>' + money(d.precio * x.qty) + '</b><button type="button" class="rm" data-cr="' + i + '">Quitar</button></div></li>';
     }).join("");
     $("[data-cart-empty]").hidden = cart.length > 0;
     $("[data-cart-total]").textContent = money(cartTotal());
@@ -199,6 +201,8 @@
     var p = product(id); if (!p) return;
     S.p = p; S.c = color(p, colorId);
     S.unit = p.precio.soloCaja ? "caja" : "pieza";
+    S.view = "foto";
+    $("[data-sheet-view]").hidden = !p.visual;
     var img = $("[data-sheet-img]");
     img.src = scene(p.escena, 1600); img.srcset = srcset(p.escena); img.sizes = "(max-width: 900px) 100vw, 50vw"; img.alt = p.escenaAlt;
     $("[data-sheet-line]").textContent = lineLabel(p) + " · " + p.serie;
@@ -225,14 +229,16 @@
     $$("[data-to]", sheet).forEach(function (el) { animateCount(el, +el.dataset.to, 2); });
   }
   function swatchBtn(c, on) {
-    return '<button type="button" role="radio" class="swatch' + (c.agotado ? " is-out" : "") + '" aria-checked="' + on + '" aria-label="' + esc(c.nombre) + (c.agotado ? " (agotado)" : "") + '" title="' + esc(c.nombre) + '" data-color="' + c.id + '" style="background-image:url(' + swatchUrl(c.muestra) + ');background-color:' + c.tono + '"></button>';
+    return '<button type="button" role="radio" class="swatch' + (c.agotado ? " is-out" : "") + '" aria-checked="' + on + '" aria-label="' + esc(c.nombre) + (c.agotado ? " (agotado)" : "") + '" title="' + esc(c.nombre) + '" data-color="' + c.id + '" style="' + swatchBg(c) + '"></button>';
   }
   function updateSheet() {
     var p = S.p, c = S.c;
     $("[data-sheet-color]").textContent = c.nombre;
     $("[data-sheet-stock]").textContent = c.agotado ? "Agotado" : "";
-    var li = $("[data-lens-img]"); li.src = swatchUrl(c.muestra); li.alt = "Muestra " + c.nombre;
+    var li = $("[data-lens-img]"); li.hidden = !!c.soloTono; li.parentNode.style.backgroundColor = c.tono;
+    if (!c.soloTono) { li.src = swatchUrl(c.muestra); li.alt = "Muestra " + c.nombre; }
     $$(".swatch", $("[data-sheet-swatches]")).forEach(function (b) { b.setAttribute("aria-checked", b.dataset.color === c.id); });
+    renderSheetView();
     var qty = Math.max(1, Math.round(+$("[data-sheet-qty]").value || 1));
     var unitPrice = S.unit === "caja" ? p.precio.caja.precio : p.precio.pieza;
     var pcs = S.unit === "caja" ? qty * p.precio.caja.piezas : qty;
@@ -243,7 +249,13 @@
   }
   $("[data-sheet-swatches]").addEventListener("click", function (e) {
     var b = e.target.closest(".swatch"); if (!b) return;
-    S.c = color(S.p, b.dataset.color); updateSheet();
+    S.c = color(S.p, b.dataset.color);
+    if (S.p.visual) S.view = "muro";
+    updateSheet();
+  });
+  $("[data-sheet-view]").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-view]"); if (!b) return;
+    S.view = b.dataset.view; updateSheet();
   });
   $("[data-sheet-unit]").addEventListener("click", function (e) {
     var b = e.target.closest("[data-unit]"); if (!b) return;
@@ -277,7 +289,7 @@
   var grid = $("[data-grid]");
   grid.innerHTML = L.productos.map(function (p) {
     var from = p.precio.caja && !p.precio.soloCaja ? boxUnit(p) : p.precio.pieza;
-    var dots = p.colores.slice(0, 6).map(function (c, k) { return '<i style="--k:' + k + ';background-image:url(' + swatchUrl(c.muestra) + ');background-color:' + c.tono + '"></i>'; }).join("");
+    var dots = p.colores.slice(0, 6).map(function (c, k) { return '<i style="--k:' + k + ";" + swatchBg(c) + '"></i>'; }).join("");
     return '<button type="button" class="card" data-line="' + p.linea + '" data-id="' + p.id + '" aria-label="' + esc(fullName(p)) + ', ver ficha">' +
       '<img class="card__img" src="' + scene(p.escena, 800) + '" srcset="' + srcset(p.escena) + '" sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 40vw" alt="' + esc(p.escenaAlt) + '" loading="lazy">' +
       '<span class="card__glare"></span><span class="card__tag">' + lineLabel(p) + '</span><span class="card__more" aria-hidden="true">↗</span>' +
@@ -339,9 +351,9 @@
   vSel.innerHTML = ["interior", "exterior"].map(function (l) {
     return '<optgroup label="' + (l === "interior" ? "Interior" : "Exterior") + '">' + vizProducts.filter(function (p) { return p.linea === l; }).map(function (p) { return '<option value="' + p.id + '">' + esc(fullName(p)) + "</option>"; }).join("") + "</optgroup>";
   }).join("");
-  function paintWall(wall, p, c) {
+  function paintWall(wall, p, c, rm) {
     var tex = wall.querySelector(".room__tex"), v = p.visual;
-    var wpx = room.clientWidth || 1000;
+    var wpx = (rm || room).clientWidth || 1000;
     var bw = Math.max(4, wpx * v.muestraCm / 300);
     wall.dataset.modo = v.modo;
     wall.style.setProperty("--tone", c.tono);
@@ -382,6 +394,19 @@
     renderViz();
   }
   vSel.addEventListener("change", function () { vizSet(vSel.value); });
+
+  /* Escena simulada de la ficha: copia del visualizador con un solo muro y luz de día. */
+  var sheetMedia = $(".sheet__media"), sheetRoom = $("[data-sheet-room]");
+  sheetRoom.innerHTML = room.innerHTML.replace(/id="(fl|sh|led)"/g, 'id="$1-ficha"').replace(/url\(#(fl|sh|led)\)/g, "url(#$1-ficha)");
+  $$("[data-compare], .room__badge, .room__torch, .room__wall--b", sheetRoom).forEach(function (el) { el.remove(); });
+  var sheetWall = $(".room__wall", sheetRoom); sheetWall.removeAttribute("data-wall");
+  function renderSheetView() {
+    var muro = S.view === "muro" && !!S.p.visual;
+    sheetMedia.classList.toggle("is-muro", muro);
+    $("[data-sheet-note]").textContent = muro ? "Simulación · el color real puede variar" : "Imagen ilustrativa";
+    $$("[data-view]", sheet).forEach(function (b) { b.setAttribute("aria-checked", b.dataset.view === (muro ? "muro" : "foto")); });
+    if (muro) paintWall(sheetWall, S.p, S.c, sheetRoom);
+  }
   $("[data-viz-swatches]").addEventListener("click", function (e) {
     var b = e.target.closest(".swatch"); if (!b) return;
     var c = color(V.p, b.dataset.color);
