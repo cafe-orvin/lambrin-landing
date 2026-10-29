@@ -341,7 +341,12 @@
       <button type="button" class="sheet__close" data-close-sheet aria-label="Cerrar ficha">×</button>
       <div class="sheet__media">
         <img data-sheet-img alt="">
-        <span class="sheet__note">Imagen ilustrativa</span>
+        <div class="room room--sheet" data-sheet-room data-light="dia" aria-hidden="true"></div>
+        <span class="sheet__note" data-sheet-note>Imagen ilustrativa</span>
+        <div class="seg sheet__view" role="radiogroup" aria-label="Vista" data-sheet-view>
+          <button type="button" role="radio" aria-checked="true" data-view="foto">Foto</button>
+          <button type="button" role="radio" aria-checked="false" data-view="muro">Tu muro</button>
+        </div>
       </div>
       <div class="sheet__body">
         <p class="eyebrow" data-sheet-line></p>

@@ -252,6 +252,9 @@ body.is-done .intro { display: none; }
 .sheet__media { position: relative; overflow: hidden; }
 .sheet__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 1.4s var(--ease); }
 .sheet.is-open .sheet__media img { transform: none; }
+.sheet__media .room { position: absolute; inset: 0; aspect-ratio: auto; opacity: 0; visibility: hidden; transition: opacity .8s var(--ease), visibility 0s .8s; }
+.sheet__media.is-muro .room { opacity: 1; visibility: visible; transition: opacity .8s var(--ease); }
+.sheet__media .sheet__view { position: absolute; right: 16px; bottom: 12px; background: rgba(243, 237, 228, .88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .sheet__note { position: absolute; left: 16px; bottom: 16px; font-size: .72rem; color: var(--cream); background: rgba(20, 17, 15, .5); padding: 6px 10px; border-radius: 999px; }
 .sheet__body { overflow-y: auto; padding: clamp(28px, 4vw, 56px); padding-top: 72px; overscroll-behavior: contain; }
 .sheet__body .eyebrow { color: var(--wood); }
@@ -514,6 +517,7 @@ select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50
   .specs dd { font-size: 1.25rem; }
   .sheet__swatch { grid-template-columns: 110px 1fr; }
   .lens { width: 110px; }
+  .sheet__note { top: 16px; bottom: auto; }
   .prices { grid-template-columns: 1fr; }
   .buy__total { margin-left: 0; width: 100%; }
   .filters { display: flex; margin-right: var(--gutter); }
