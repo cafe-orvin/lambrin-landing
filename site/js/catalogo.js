@@ -70,10 +70,10 @@ window.LAMBRIN = {
       medida: { largo: 290, ancho: 16, espesor: 2.4 },
       precio: { pieza: 215, caja: { precio: 3200, piezas: 16 } },
       colores: [
-        { id: "tapestry-oyster", nombre: "Tapestry Oyster", muestra: "waby-tapestry-oyster", tono: "#ccc6c0" },
-        { id: "cloth-126", nombre: "Cloth 126", muestra: "waby-cloth-126", tono: "#b4b1b1" },
-        { id: "beige-metal", nombre: "Beige Metal", muestra: "waby-beige-metal", tono: "#d8cfc2", soloTono: true },
-        { id: "skin", nombre: "Skin", muestra: "waby-skin", tono: "#e9dccd", soloTono: true }
+        { id: "tapestry-oyster", nombre: "Tapestry Oyster", muestra: "waby-tapestry-oyster", foto: "waby-tapestry-oyster", tono: "#ccc6c0" },
+        { id: "cloth-126", nombre: "Cloth 126", muestra: "waby-cloth-126", foto: "waby-cloth-126", tono: "#b4b1b1" },
+        { id: "beige-metal", nombre: "Beige Metal", muestra: "waby-beige-metal", foto: "waby-beige-metal", tono: "#d8cfc2", soloTono: true },
+        { id: "skin", nombre: "Skin", muestra: "waby-skin", foto: "waby-skin", tono: "#e9dccd", soloTono: true }
       ],
       visual: { modo: "listones", muestraCm: 16 },
       calc: "superficie"
