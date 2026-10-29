@@ -1,5 +1,5 @@
 # Anexo — Borrador de contenido
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28) · Español de México · Sin cifras, materiales, especificaciones, clientes ni testimonios.
+Estado: **Histórico (v1)** — contenido de la landing conceptual. El contenido vigente de la v2 vive en `site/index.html` y `site/js/catalogo.js` (ADR-0006). · Español de México
 
 ## Encabezado
 LAMBRIN · Acabados · Ideas · Contacto

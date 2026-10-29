@@ -1,48 +1,47 @@
-# 02 — Diagramas
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
+# 02 — Diagramas (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5
 
 ## C4 · Contexto
 ```mermaid
 flowchart LR
-  V[Visitante o asesor] -->|abre desde disco o servidor estático futuro| L[Landing Lambrin]
-  L -. sin conexión .-> X[(Ningún servicio externo)]
+  V[Visitante] -->|abre| L[Landing Lambrin · hosting estático]
+  L -->|enlace al hacer clic| W[WhatsApp · wa.me]
+  W --> A[Asesor de Lambrin]
 ```
 
 ## C4 · Contenedores
-Un solo contenedor: archivos estáticos en `site/`. No hay servidor, base de datos ni terceros.
 ```mermaid
 flowchart TB
   subgraph site/
-    H[index.html · estructura y textos]
-    C[styles.css · diseño, capas de luz, responsive, movimiento reducido]
-    J[main.js · datos, estado e interacción]
+    H[index.html · estructura, SEO, diálogos]
+    C[css/styles.css · diseño, movimiento, responsive]
+    D[js/catalogo.js · datos: productos, accesorios, CONTACT, galería, créditos]
+    J[js/main.js · interacción y movimiento]
+    AS[assets/ · escenas WebP, muestras JPG, fuentes woff2, og.jpg]
   end
-  H --> C
-  H --> J
+  H --> C & D & J
+  J --> D
+  J --> AS
 ```
 
-## C4 · Componentes de `main.js`
+## Componentes de `main.js`
 ```mermaid
 flowchart TB
-  D[FINISHES · seis vistas] --> T[Generador de texturas · canvas, una vez por acabado, en caché]
-  D --> R[Render de escena · variables CSS y clases]
-  I[INSPIRATIONS · ideas por espacio] --> S
-  K[CONTACT · canal = null] --> CTA[Bloque CTA]
-  S[Estado · acabado, día/noche, acento] --> R
-  S --> A[Anunciador aria-live]
-  S --> HS[Hash de URL]
-  S --> CTA
-  U1[Radiogroup · mouse, teclado, táctil] --> S
-  U2[Apagadores role=switch] --> S
-  U3[Deslizar sobre la escena] --> S
-  U4[Botones «Ver en la escena»] --> S
-  HS -->|al cargar| S
-  T --> R
+  D[(LAMBRIN en catalogo.js)] --> G[Catálogo · tarjetas, filtros, rejilla de filas completas]
+  D --> F[Ficha · lupa, medidas, precios, unidad y cantidad]
+  D --> VZ[Visualizador · muro A/B, luces, orientación, comparación]
+  D --> CA[Calculadora · superficie, piso, vigas; combinación más barata]
+  D --> GA[Galería horizontal]
+  D --> AC[Accesorios]
+  G --> F
+  GA --> F
+  F --> Q[Lista de cotización · localStorage]
+  VZ --> Q
+  CA --> Q
+  AC --> Q
+  Q --> WA[Mensaje wa.me · ADR-0007]
+  M[Movimiento · telón, portada, revelado, parallax, cursor, progreso] -.-> todo
 ```
 
-## Capas de la escena (de atrás hacia adelante)
-```mermaid
-flowchart LR
-  a[Muro: color base] --> b[Textura conceptual] --> c[Luz ambiente día/noche] --> d[Luz de ventana con sombra de cancel] --> e[Cono de la lámpara] --> f[Baño rasante de acento] --> g[Viñeta y grano de película] --> h[Apagadores y aviso]
-```
-La geometría (posición del muro, la ventana, la lámpara y los apagadores) es fija para todos los acabados; solo cambian color, textura y respuesta a la luz.
+## Flujo del visitante
+Portada → Catálogo (filtro) → Ficha (color, lupa, precio) → Visualizador o Calculadora → Lista de cotización → WhatsApp.

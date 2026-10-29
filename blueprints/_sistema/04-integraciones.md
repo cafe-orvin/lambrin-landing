@@ -1,10 +1,10 @@
-# 04 — Integraciones
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
+# 04 — Integraciones (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5
 
-**Ninguna.** La página no carga fuentes, scripts, imágenes, mapas, analítica ni servicios de terceros, y no hace llamadas de red.
-
-| Punto de integración futuro | Estado | Qué se necesita |
+| Integración | Estado | Detalle |
 |---|---|---|
-| Canal de contacto del CTA | Pendiente (S4) | Canal real confirmado por el usuario y ADR nuevo si implica un servicio (formulario, CRM, WhatsApp Business). |
-| Fotografías del proveedor | Pendiente (S3) | Archivos aprobados y su asociación a cada acabado; ADR que sustituya ADR-0002. |
-| Hosting y dominio | Fuera de alcance | Decisión y ADR antes de cualquier despliegue. |
+| WhatsApp (`https://wa.me/<número>?text=…`) | Construida; número pendiente | Enlace que el visitante abre al hacer clic; la página no envía nada (ADR-0007). |
+| Fuentes Fraunces y Manrope | Autoalojadas | Sin solicitudes a Google Fonts (ADR-0008). |
+| Fotos de Unsplash | Descargadas y autoalojadas | Sin enlaces en caliente; créditos en el pie y `assets/CREDITOS.md` (ADR-0005). |
+| Hosting y dominio | Pendiente del usuario | Guía en `PUBLICAR.md`; `.htaccess` opcional para Apache. |
+| Analítica | No incluida | Requiere decisión y ADR nuevo (datos de visitantes). |

@@ -13,3 +13,5 @@
 ## Ciclo v2 — catálogo completo
 - 2026-10-28: nuevo ciclo brownfield. Propuesta `lambrin-v2/propuesta.md`. Decisiones del usuario: fotos libres + muestras del PDF, precios públicos, WhatsApp (número pendiente), v2 en `arq/lambrin-v2`. IVA no se menciona; dominio pendiente.
 - 2026-10-28: PG0–PG3 aprobados con la respuesta «lo necesario». ADR-0005 a ADR-0008 aceptados; ADR-0002 y ADR-0003 sustituidos; parte tipográfica de ADR-0001 sustituida. Autorizadas T01–T08, descargas de fotos libres y fuentes OFL, y prueba de humo T07.
+- 2026-10-29: F4 construida en `arq/lambrin-v2` (T01–T08, etiquetas `lambrin2-t01`…`lambrin2-t08`). Prueba de humo T07 con entrada temporal `lambrin-v2-prueba` en `SC360/.claude/launch.json`, retirada restaurando el respaldo (SHA-256 `769baf5e…6921fb` verificado). 17 requisitos cumplen; RNF-02 solo en código y RNF-04 parcial. Evidencia en `lambrin-v2/verificacion.md`.
+- 2026-10-29: PG4 aprobado («Aprobar PG4»). Cierre F5 propuesto: documentos de `_sistema/` 00–06 reescritos para la v2; `anexo-contenido.md` marcado como histórico de la v1. Pendiente PG5 y fusión a `main`.

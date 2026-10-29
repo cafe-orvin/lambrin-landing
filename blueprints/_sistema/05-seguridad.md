@@ -1,14 +1,16 @@
-# 05 — Seguridad y privacidad
-Estado: Vigente — aprobado en PG2, construido en F4 (PG4, 2026-10-28)
+# 05 — Seguridad y privacidad (v2)
+Estado: Vigente (v2) — PG0–PG3 2026-10-28, PG4 2026-10-29; pendiente PG5
 
-| Amenaza o riesgo | Mitigación |
+| Riesgo | Mitigación |
 |---|---|
-| Afirmaciones falsas sobre el producto (riesgo comercial y legal) | Avisos de simulación (CA-009); prohibición de datos comerciales verificada por inspección (CA-010). |
-| Envío simulado que haga creer al visitante que fue atendido | Sin formularios ni manejadores de envío (CA-008). |
-| Carga de recursos de terceros o rastreo | Sin URL externas, fuentes web, `fetch` ni analítica (CA-017). |
-| Inyección mediante el hash de la URL | El hash solo se compara contra los seis `id` permitidos; nunca se inserta como HTML. |
-| Datos personales | No hay campos, cookies ni almacenamiento local (CA-018). |
+| Confundir escenas de stock con el producto | Nota «Imagen ilustrativa» en portada y fichas; aviso en el pie; «Simulación» en el visualizador. |
+| Precio desactualizado o mal entendido | Leyenda «Precios en MXN, sujetos a cambio sin previo aviso»; calculadora marcada como estimación. |
+| Vender un color agotado | Deck Teka marcado «Agotado» y nota en el mensaje de WhatsApp. |
+| Datos personales | Sin formularios ni cookies; la lista vive solo en el navegador del visitante y puede vaciarse. |
+| Inyección de HTML | Todo texto de datos pasa por `esc()` antes de insertarse; el mensaje de WhatsApp va codificado con `encodeURIComponent`. |
+| Enlaces externos | `rel="noopener"` y `target="_blank"`. |
+| Licencias | Unsplash (uso comercial) y SIL OFL 1.1; créditos visibles. |
 
-- Secretos: ninguno.
-- Autenticación y permisos: no aplican.
-- Política de seguridad de contenido (CSP): se pospone al despliegue; en `file://` la fuente `'self'` se comporta distinto según el navegador y podría bloquear la propia página.
+- Secretos: ninguno. Autenticación: no aplica.
+- CSP: se recomienda agregarla en el hosting al publicar (`default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'`), porque el código usa estilos en línea para variables y fondos.
+- `.htaccess`: `Options -Indexes`, compresión y caché, todo dentro de `<IfModule>`.
