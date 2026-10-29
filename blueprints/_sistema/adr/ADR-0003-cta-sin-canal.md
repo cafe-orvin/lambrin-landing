@@ -1,5 +1,5 @@
 # ADR-0003: Llamada a la acción sin canal de contacto
-- Estado: Aceptado
+- Estado: Sustituido por ADR-0007 (2026-10-28)
 - Fecha: 2026-10-28 · Aprobó: usuario (cafe@orvin.lat), en el chat · Compuerta: PG2
 
 ## Contexto

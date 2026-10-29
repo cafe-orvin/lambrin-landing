@@ -1,5 +1,5 @@
 # ADR-0001: Sitio estático con HTML, CSS y JavaScript nativos, sin dependencias
-- Estado: Aceptado
+- Estado: Aceptado; parte tipográfica sustituida por ADR-0008 (2026-10-28)
 - Fecha: 2026-10-28 · Aprobó: usuario (cafe@orvin.lat), en el chat · Compuerta: PG2
 
 ## Contexto
